@@ -1,10 +1,8 @@
-import logo from "./logo.svg";
-import "./App.css";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { getAllData } from "./data";
 import useWindowDimensions from "./hooks/useWindowDimensions";
-import ExpandableGraph from "./Graph";
+import ExpandableGraph from "./components/Graph";
 
 function App() {
   const [allData, setAllData] = useState([]);
