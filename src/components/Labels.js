@@ -21,10 +21,10 @@ const Labels = () => {
           width: "40%",
           // margin: "0.8rem",
           color: "#fff",
-          border: "0.5px solid #8D8D8D",
-          borderRadius: "60px",
+          border: "1.5px solid white",
+          borderRadius: "5px",
           alignContent: "center",
-          paddingLeft: "30px",
+          // paddingLeft: "30px",
           cursor: "move",
         }}
         className="labelCardDetails justify-content-center"
@@ -37,128 +37,75 @@ const Labels = () => {
           }
         >
           <div
-            class="row align-items-center"
-            style={{ margin: "30px -60px 30px 5px" }}
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-evenly",
+              padding: "5px",
+            }}
           >
             <div
-              class="col justify-content-center align-items-center"
               style={{
-                marginLeft: "auto",
-                marginRight: "auto",
-                display: "block",
-                textAlign: "center",
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <img src="imgs/white-box.png" height="25px" />
+              <span style={{ marginLeft: "4px" }}>Workflow</span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
               }}
             >
               <div
-                class="justify-content-center align-items-center"
                 style={{
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                  display: "block",
-                  textAlign: "center",
+                  height: "15px",
+                  width: "15px",
+                  borderRadius: "50%",
+                  background: "#d27dfa",
                 }}
-              >
-                <div
-                  class="row justify-content-center align-items-center"
-                  style={{
-                    width: "25px",
-                    height: "25px",
-                    marginLeft: "8px",
-                    transform: "matrix(0.85, -0.53, 0.53, 0.85, 0, 0)",
-                    background:
-                      "transparent radial-gradient(closest-side at 52% 21%, #C448E3 0%, #6F2D80 100%) 0% 0% no-repeat padding-box",
-                    opacity: 1,
-                    borderRadius: "18px",
-
-                    // mar
-                  }}
-                ></div>
-              </div>
-              <div class="row" style={{ textAlign: "center" }}>
-                Workflow
-              </div>
+              ></div>
+              <span style={{ marginLeft: "4px" }}>Implementation</span>
             </div>
             <div
-              class="col justify-content-center align-items-center"
               style={{
-                marginLeft: "auto",
-                marginRight: "auto",
-                display: "block",
-                textAlign: "center",
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
               }}
             >
               <div
-                class="justify-content-center align-items-center"
                 style={{
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                  display: "block",
-                  textAlign: "center",
+                  height: "15px",
+                  width: "15px",
+                  borderRadius: "50%",
+                  background: "transparent",
+                  border: "0.5px solid green",
                 }}
-              >
-                <div
-                  class="row justify-content-center align-items-center"
-                  style={{
-                    width: "25px",
-                    height: "25px",
-                    marginLeft: "8px",
-                    transform: "matrix(0.85, -0.53, 0.53, 0.85, 0, 0)",
-                    background:
-                      "transparent radial-gradient(closest-side at 52% 21%, #C4981F 100%, #C4981F 100%) 0% 0% no-repeat padding-box",
-                    opacity: 1,
-                    borderRadius: "18px",
-
-                    // mar
-                  }}
-                ></div>
-              </div>
-              <div class="row" style={{ textAlign: "center" }}>
-                Implementation
-              </div>
+              ></div>
+              <span style={{ marginLeft: "4px" }}>Buyer</span>
             </div>
             <div
-              class="col"
-              style={
-                {
-                  // // width: "18px",
-                  // // height: "18px",
-                  // // transform: "matrix(0.85, -0.53, 0.53, 0.85, 0, 0)",
-                  // background:
-                  //   "transparent radial-gradient(closest-side at 39% 26%, #7348CB 0%, #402081 100%) 0% 0% no-repeat padding-box",
-                  // opacity: 1,
-                  // borderRadius: "18px",
-                }
-              }
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
             >
               <div
-                class="row justify-content-center"
                 style={{
-                  width: "25px",
-                  height: "25px",
-                  marginLeft: "0px",
-                  transform: "matrix(0.85, -0.53, 0.53, 0.85, 0, 0)",
-                  background:
-                    "transparent radial-gradient(closest-side at 39% 26%, #7348CB 0%, #402081 100%) 0% 0% no-repeat padding-box",
-                  opacity: 1,
-                  borderRadius: "18px",
+                  height: "15px",
+                  width: "15px",
+                  borderRadius: "50%",
+                  background: "transparent",
+                  border: "0.5px solid red",
                 }}
               ></div>
-              <div class="row">Buyer</div>
-            </div>
-            <div class="col">
-              <div
-                class="row"
-                style={{
-                  width: "25px",
-                  height: "25px",
-                  marginLeft: "-1 px",
-                  background:
-                    "transparent radial-gradient(closest-side at 35% 30%, #E8805F 0%, #B92E11 100%) 0% 0% no-repeat padding-box",
-                  opacity: 1,
-                  borderRadius: "18px",
-                }}
-              ></div>
-              <div class="row">Seller</div>
+              <span style={{ marginLeft: "4px" }}>Sellar</span>
             </div>
           </div>
         </OverlayTrigger>

@@ -6,6 +6,7 @@ import ExpandableGraph from "./components/Graph";
 import Filter from "./components/Filter";
 import NodeDetail from "./components/NodeDetail";
 import Labels from "./components/Labels";
+import Header from "./components/Header";
 import Zoom from "./components/Zoom";
 var _ = require("lodash");
 
@@ -69,6 +70,7 @@ function App() {
     return (
       <div>
         <div>
+          <Header />
           {/* <Container style={{ position: "absolute" }}>
             <Zoom prunedTree={prunedTree} containerRef={containerRef} />
           </Container> */}

@@ -22,9 +22,13 @@ body {
 
 .headerSection {
   height: 65px;
-  padding-top: 10px;
-  padding-left: 5%;
   background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  padding-left: 1%;
+  padding-right: 1%;
 }
 .dot {
   height: 10px;
@@ -262,13 +266,30 @@ body {
 .select-search__input:not([readonly]):focus {
   cursor: initial;
 }
+.header-button {
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  color: black;
+  background-color: white;
+  width: 130px;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 3px;
+}
+.header-button:focus {
+  outline: none;
+  border: none;
+}
 .nav-text {
-  color: white;
+  color: black;
 }
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link 
     /* background-color: #0d6efd; */ {
   background: none;
   border-radius: 0;
+  color: black;
   /* border-bottom: #6F2D80 5px solid; */
 }
 .border-nav {

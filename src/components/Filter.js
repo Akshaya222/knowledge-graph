@@ -245,7 +245,7 @@ const Filter = ({
         <Card.Body>
           <div
             style={{
-              height: "75vh",
+              height: "70vh",
               overflowY: "scroll",
               overflowX: "hidden",
               scrollbarWidth: "thin",

@@ -57,29 +57,10 @@ const ExpandableGraph = ({
   }, []);
 
   const renderNode = (node) => {
-    if (node.id == "m-1") {
+    if (node.img) {
+      console.log(node.img);
       const loader = new THREE.TextureLoader();
-      const imgTexture = loader.load(
-        // resource URL
-        // "https://www.insurancegig.com/images/Violet-Logo.svg",
-        `/imgs/${node.img}`,
-        // Function when resource is loaded
-        function (texture) {
-          // do something with the texture
-          var material = new THREE.MeshBasicMaterial({
-            map: texture,
-          });
-        },
-        // Function called when download progresses
-        function (xhr) {
-          console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
-        },
-        // Function called when download errors
-        function (xhr) {
-          console.log("An error happened");
-        }
-      );
-      //   console.log(imgTexture);
+      const imgTexture = loader.load(`/imgs/${node.img}`);
       const material = new THREE.SpriteMaterial({ map: imgTexture });
       const sprite = new THREE.Sprite(material);
       sprite.scale.set(node.width, node.height);
@@ -117,11 +98,11 @@ const ExpandableGraph = ({
           node.id.includes("workflowId")
             ? "blue"
             : node.id.includes("workflowImplementationId")
-            ? "yellow"
+            ? "#d27dfa"
             : node.id.includes("sellerId")
-            ? "green"
-            : node.id.includes("buyer")
             ? "red"
+            : node.id.includes("buyer")
+            ? "green"
             : "rgba(119, 1, 216,0.0)"
         // !node.childLinks.length ? "green" : node.collapsed ? "red" : "yellow"
       }

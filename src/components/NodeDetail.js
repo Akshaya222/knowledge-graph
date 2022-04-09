@@ -28,7 +28,7 @@ const NodeDetail = ({ item }) => {
         style={{
           width: "25%",
           margin: "0.8rem",
-          height: "95vh",
+          height: "85vh",
           overflowY: "scroll",
           scrollbarWidth: "thin",
           scrollbarColor: "  rgba(229, 229, 229, 0.6) rgba(229, 229, 229, 0.4)",
