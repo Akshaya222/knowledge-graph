@@ -227,42 +227,16 @@ const Filter = ({
       position={filterPosition}
       onStop={(e, data) => setFilterPosition({ x: data.x, y: data.y })}
     >
-      <Card style={{ margin: "0.8rem" }} className="infoCardFilter">
-        <Card.Header
-          className="infoCardFilterHeader"
-          style={{
-            // textAlign: "left",
-            font: "bold bold medium 22px/33px Poppins",
-            letterSpacing: "1px",
-            color: "#fff",
-            fontSize: "22px",
-            opacity: "1",
-          }}
-        >
+      <Card className="infoCardFilter">
+        <Card.Header className="infoCardFilterHeader">
           Select Filters
         </Card.Header>
 
         <Card.Body>
-          <div
-            style={{
-              height: "70vh",
-              overflowY: "scroll",
-              overflowX: "hidden",
-              scrollbarWidth: "thin",
-              scrollbarColor:
-                "  rgba(229, 229, 229, 0.6) rgba(229, 229, 229, 0.4)",
-            }}
-          >
+          <div className="infoCardFilterCardBody">
             <Form.Label
               htmlFor="filterSelect"
-              style={{
-                marginTop: "10px",
-                textAlign: "left",
-                font: "normal normal normal 18px/29px Poppins",
-                letterSpacing: "0px",
-                color: "#fff",
-                opacity: "1",
-              }}
+              className="multiselect-form-label"
             >
               Workflow Name
             </Form.Label>
@@ -278,14 +252,7 @@ const Filter = ({
             <br />
             <Form.Label
               htmlFor="filterSelectType"
-              style={{
-                marginTop: "10px",
-                textAlign: "left",
-                font: "normal normal normal 18px/29px Poppins",
-                letterSpacing: "0px",
-                color: "#fff",
-                opacity: "1",
-              }}
+              className="multiselect-form-label"
             >
               Workflow Type
             </Form.Label>
@@ -301,14 +268,7 @@ const Filter = ({
             <br />
             <Form.Label
               htmlFor="filterSelectStatus"
-              style={{
-                marginTop: "10px",
-                textAlign: "left",
-                font: "normal normal normal 18px/29px Poppins",
-                letterSpacing: "0px",
-                color: "#fff",
-                opacity: "1",
-              }}
+              className="multiselect-form-label"
             >
               Workflow Status
             </Form.Label>
@@ -325,14 +285,7 @@ const Filter = ({
             <br />
             <Form.Label
               htmlFor="filterSelect"
-              style={{
-                // marginTop: "10px",
-                textAlign: "left",
-                font: "normal normal normal 18px/29px Poppins",
-                letterSpacing: "0px",
-                color: "#fff",
-                opacity: "1",
-              }}
+              className="multiselect-form-label"
             >
               Partner Name
             </Form.Label>
@@ -347,14 +300,7 @@ const Filter = ({
             />
             <Form.Label
               htmlFor="filterBusinessType"
-              style={{
-                // marginTop: "10px",
-                textAlign: "left",
-                font: "normal normal normal 18px/29px Poppins",
-                letterSpacing: "0px",
-                color: "#fff",
-                opacity: "1",
-              }}
+              className="multiselect-form-label"
             >
               Line of Business Type
             </Form.Label>
@@ -370,14 +316,7 @@ const Filter = ({
             <br />
             <Form.Label
               htmlFor="filterBusinessSubType"
-              style={{
-                // marginTop: "10px",
-                textAlign: "left",
-                font: "normal normal normal 18px/29px Poppins",
-                letterSpacing: "0px",
-                color: "#fff",
-                opacity: "1",
-              }}
+              className="multiselect-form-label"
             >
               Line of Business SubType
             </Form.Label>
@@ -393,14 +332,7 @@ const Filter = ({
 
             <Form.Label
               htmlFor="filterValueChain"
-              style={{
-                // marginTop: "10px",
-                textAlign: "left",
-                font: "normal normal normal 18px/29px Poppins",
-                letterSpacing: "0px",
-                color: "#fff",
-                opacity: "1",
-              }}
+              className="multiselect-form-label"
             >
               Value Chain Type
             </Form.Label>
@@ -415,14 +347,7 @@ const Filter = ({
             />
             <Form.Label
               htmlFor="filterValueSubType"
-              style={{
-                // marginTop: "10px",
-                textAlign: "left",
-                font: "normal normal normal 18px/29px Poppins",
-                letterSpacing: "0px",
-                color: "#fff",
-                opacity: "1",
-              }}
+              className="multiselect-form-label"
             >
               Value Chain Sub Type
             </Form.Label>
@@ -437,14 +362,7 @@ const Filter = ({
             />
             <Form.Label
               htmlFor="filterCompanyType"
-              style={{
-                // marginTop: "10px",
-                textAlign: "left",
-                font: "normal normal normal 18px/29px Poppins",
-                letterSpacing: "0px",
-                color: "#fff",
-                opacity: "1",
-              }}
+              className="multiselect-form-label"
             >
               Company Type
             </Form.Label>
@@ -459,14 +377,7 @@ const Filter = ({
             />
             <Form.Label
               htmlFor="filterCompanySubType"
-              style={{
-                // marginTop: "10px",
-                textAlign: "left",
-                font: "normal normal normal 18px/29px Poppins",
-                letterSpacing: "0px",
-                color: "#fff",
-                opacity: "1",
-              }}
+              className="multiselect-form-label"
             >
               Company Sub Type
             </Form.Label>
@@ -484,14 +395,7 @@ const Filter = ({
           <br />
           <Button
             variant="primary"
-            style={{
-              background: "#47127D",
-              borderRadius: "4px",
-              borderColor: "None",
-              width: "100px",
-              border: "none",
-              outline: "none",
-            }}
+            className="filter-button"
             onClick={() => {
               let updatedFilteredObj = filteredObj;
               if (filteredObj.names.length == 0) {
@@ -539,15 +443,7 @@ const Filter = ({
           </Button>
           <Button
             variant="primary"
-            style={{
-              background: "#F72A51",
-              borderRadius: "4px",
-              borderColor: "None",
-              width: "100px",
-              marginLeft: "10px",
-              border: "none",
-              outline: "none",
-            }}
+            className="reset-button"
             onClick={() => {
               window.location.reload(false);
             }}

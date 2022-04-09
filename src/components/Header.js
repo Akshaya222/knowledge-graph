@@ -6,30 +6,17 @@ function App() {
   return (
     <div className="App">
       <div className="headerSection">
-        <div style={{ display: "flex", flexDirection: "row" }}>
+        <div className="flex-row">
           <Image height="55px" src="/imgs/logo.png" />
-          <h2 style={{ color: "#000", marginLeft: "10px", marginTop: "2px" }}>
-            InsuranceGIG
-          </h2>
+          <h2 className="company-name">InsuranceGIG</h2>
         </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-        >
-          <p style={{ color: "#b090f0", marginTop: "0.6rem" }}>Marketplace</p>
+        <div className="flex-row-align-center">
+          <p className="header-text">Marketplace</p>
           <span className="dot"></span>
-          <p style={{ color: "#b090f0", marginTop: "0.6rem" }}>
-            Knowledge Graph
-          </p>
+          <p className="header-text">Knowledge Graph</p>
         </div>
-        <div style={{ backgroundColor: "rgba(229, 229, 229, 0.4)" }}>
-          <button
-            className="header-button"
-            style={{ background: "#6605f7", color: "white" }}
-          >
+        <div className="header-tab-pill-container ">
+          <button className="header-button header-button-active">
             Workflow
           </button>
           <button className="header-button">Partner</button>

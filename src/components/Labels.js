@@ -16,19 +16,7 @@ const Labels = () => {
       position={labelPosition}
       onStop={(e, data) => setLabelPosition({ x: data.x, y: data.y })}
     >
-      <Card
-        style={{
-          width: "40%",
-          // margin: "0.8rem",
-          color: "#fff",
-          border: "1.5px solid white",
-          borderRadius: "5px",
-          alignContent: "center",
-          // paddingLeft: "30px",
-          cursor: "move",
-        }}
-        className="labelCardDetails justify-content-center"
-      >
+      <Card className="labelCardDetails justify-content-center labelCard">
         {" "}
         <OverlayTrigger
           placement="right"
@@ -36,76 +24,39 @@ const Labels = () => {
             <Tooltip id="tooltip-disabled">Node Type and their color</Tooltip>
           }
         >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-evenly",
-              padding: "5px",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
+          <div className="label-container">
+            <div className="flex-row-align-center">
               <img src="imgs/white-box.png" height="25px" />
-              <span style={{ marginLeft: "4px" }}>Workflow</span>
+              <span className="label-text">Workflow</span>
             </div>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
+            <div className="flex-row-align-center">
               <div
+                className="label-circle"
                 style={{
-                  height: "15px",
-                  width: "15px",
-                  borderRadius: "50%",
                   background: "#d27dfa",
                 }}
               ></div>
-              <span style={{ marginLeft: "4px" }}>Implementation</span>
+              <span className="label-text">Implementation</span>
             </div>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
+            <div className="flex-row-align-center">
               <div
+                className="label-circle"
                 style={{
-                  height: "15px",
-                  width: "15px",
-                  borderRadius: "50%",
                   background: "transparent",
                   border: "0.5px solid green",
                 }}
               ></div>
-              <span style={{ marginLeft: "4px" }}>Buyer</span>
+              <span className="label-text">Buyer</span>
             </div>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
+            <div className="flex-row-align-center">
               <div
+                className="label-circle"
                 style={{
-                  height: "15px",
-                  width: "15px",
-                  borderRadius: "50%",
                   background: "transparent",
                   border: "0.5px solid red",
                 }}
               ></div>
-              <span style={{ marginLeft: "4px" }}>Sellar</span>
+              <span className="label-text">Sellar</span>
             </div>
           </div>
         </OverlayTrigger>

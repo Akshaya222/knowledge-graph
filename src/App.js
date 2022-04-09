@@ -71,10 +71,10 @@ function App() {
       <div>
         <div>
           <Header />
-          {/* <Container style={{ position: "absolute" }}>
+          {/* <Container className="position-absolute">
             <Zoom prunedTree={prunedTree} containerRef={containerRef} />
           </Container> */}
-          <Container style={{ position: "absolute" }}>
+          <Container className="position-absolute">
             <Filter
               wfdata={wfdata}
               wfdataImp={wfdataImp}
@@ -84,10 +84,10 @@ function App() {
               unchangedData={unchangedData}
             />
           </Container>
-          <Container style={{ position: "absolute" }}>
+          <Container className="position-absolute">
             <NodeDetail item={item} />
           </Container>
-          <Container style={{ position: "absolute", cursor: "move" }}>
+          <Container className="position-absolute curser-move ">
             <Labels />
           </Container>
           <Container className="kg">
