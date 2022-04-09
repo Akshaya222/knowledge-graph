@@ -248,6 +248,9 @@ const Filter = ({
               height: "75vh",
               overflowY: "scroll",
               overflowX: "hidden",
+              scrollbarWidth: "thin",
+              scrollbarColor:
+                "  rgba(229, 229, 229, 0.6) rgba(229, 229, 229, 0.4)",
             }}
           >
             <Form.Label

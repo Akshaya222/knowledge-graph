@@ -7,10 +7,17 @@ import React, {
 } from "react";
 import { ForceGraph3D } from "react-force-graph";
 import SpriteText from "three-spritetext";
+import * as THREE from "three";
 
-const ExpandableGraph = ({ graphData, setItem }) => {
+const ExpandableGraph = ({
+  graphData,
+  setItem,
+  setPrunedTree,
+  prunedTree,
+  containerRef,
+}) => {
+  const NODE_R = 3;
   const rootId = "m-1";
-
   const nodesById = useMemo(() => {
     const nodesById = Object.fromEntries(
       graphData.nodes.map((node) => [node.id, node])
@@ -44,19 +51,67 @@ const ExpandableGraph = ({ graphData, setItem }) => {
     return { nodes: visibleNodes, links: visibleLinks };
   }, [nodesById]);
 
-  const [prunedTree, setPrunedTree] = useState(getPrunedTree());
-
   const handleNodeClick = useCallback((node) => {
     node.collapsed = !node.collapsed; // toggle collapse state
     setPrunedTree(getPrunedTree());
   }, []);
 
+  const renderNode = (node) => {
+    if (node.id == "m-1") {
+      const loader = new THREE.TextureLoader();
+      const imgTexture = loader.load(
+        // resource URL
+        // "https://www.insurancegig.com/images/Violet-Logo.svg",
+        `/imgs/${node.img}`,
+        // Function when resource is loaded
+        function (texture) {
+          // do something with the texture
+          var material = new THREE.MeshBasicMaterial({
+            map: texture,
+          });
+        },
+        // Function called when download progresses
+        function (xhr) {
+          console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+        },
+        // Function called when download errors
+        function (xhr) {
+          console.log("An error happened");
+        }
+      );
+      //   console.log(imgTexture);
+      const material = new THREE.SpriteMaterial({ map: imgTexture });
+      const sprite = new THREE.Sprite(material);
+      sprite.scale.set(node.width, node.height);
+      return sprite;
+    }
+  };
+
   return (
     <ForceGraph3D
       dagMode="zin"
       graphData={getPrunedTree()}
+      ref={containerRef}
       linkDirectionalParticles={2}
-      nodeLabel="id"
+      nodeLabel={(node) =>
+        `<span style="color: #fff">${node.title || node.name || node.id}</span>`
+      }
+      linkWidth={1.8}
+      d3VelocityDecay={0.3}
+      linkResolution={20}
+      minZoom={300}
+      onNodeDragEnd={(node) => {
+        node.fx = node.x;
+        node.fy = node.y;
+        node.fz = node.z;
+      }}
+      nodeRelSize={NODE_R}
+      autoPauseRedraw={false}
+      showNavInfo={true}
+      nodeResolution={20}
+      nodeOpacity={0.75}
+      nodeVal={(node) => 8 + node.value || 8}
+      linkDirectionalParticleSpeed={0.08}
       nodeColor={
         (node) =>
           node.id.includes("workflowId")
@@ -65,7 +120,9 @@ const ExpandableGraph = ({ graphData, setItem }) => {
             ? "yellow"
             : node.id.includes("sellerId")
             ? "green"
-            : "red"
+            : node.id.includes("buyer")
+            ? "red"
+            : "rgba(119, 1, 216,0.0)"
         // !node.childLinks.length ? "green" : node.collapsed ? "red" : "yellow"
       }
       onNodeHover={(node) => {
@@ -74,8 +131,6 @@ const ExpandableGraph = ({ graphData, setItem }) => {
         }
       }}
       onNodeClick={handleNodeClick}
-      // nodeRelSize={7}
-      // nodeResolution={20}
       linkThreeObjectExtend={true}
       linkThreeObject={(link) => {
         // extend link with text sprite
@@ -84,17 +139,10 @@ const ExpandableGraph = ({ graphData, setItem }) => {
         sprite.textHeight = 1.5;
         return sprite;
       }}
-      // nodeThreeObject={(node, canvasContext, scale) => {
-      //   if (node.id == "m-1") {
-      //     const imgTexture = new THREE.TextureLoader().load(
-      //       `/imgs/${node.img}`
-      //     );
-      //     const material = new THREE.SpriteMaterial({ map: imgTexture });
-      //     const sprite = new THREE.Sprite(material);
-      //     sprite.scale.set(12, 12);
-      //     return sprite;
-      //   }
-      // }}
+      nodeThreeObjectExtend={true}
+      nodeThreeObject={(node, canvasContext, scale) =>
+        renderNode(node, canvasContext, scale)
+      }
       linkPositionUpdate={(sprite, { start, end }) => {
         const middlePos = Object.assign(
           ...["x", "y", "z"].map((c) => ({

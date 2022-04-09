@@ -25,64 +25,104 @@ const NodeDetail = ({ item }) => {
       onStop={(e, data) => setDetailPosition({ x: data.x, y: data.y })}
     >
       <Card
-        style={{ width: "20%", margin: "0.8rem" }}
+        style={{
+          width: "25%",
+          margin: "0.8rem",
+          height: "95vh",
+          overflowY: "scroll",
+          scrollbarWidth: "thin",
+          scrollbarColor: "  rgba(229, 229, 229, 0.6) rgba(229, 229, 229, 0.4)",
+        }}
         className="infoCardDetails"
       >
         <Card.Header className="infoCardDetailsHeader">Node Detail</Card.Header>
         <Card.Body>
-          <div
+          <p
             style={{
-              backgroundImage: "linear-gradient(90deg, #aa51bc, #6145cf)",
               color: "#fff",
-              alignItems: "center",
-              borderRadius: "8px",
+              textAlign: "center",
+              padding: "3px",
+              border: "1px dashed white",
+              borderRadius: "5px",
             }}
           >
-            <p style={{ color: "#fff", padding: "5px" }}>
-              {item.id?.includes("workflowId")
-                ? "WorkFlow"
-                : item.id?.includes("workflowImplementationId")
-                ? "WorkFlow Imp"
-                : item.id?.includes("sellerId")
-                ? "Seller"
-                : item.id?.includes("buyer")
-                ? "Buyer"
-                : item.id?.includes("m-1")
-                ? "Master"
-                : ""}
-            </p>
-          </div>
-          <Card.Title style={{ color: "white" }}>
-            {item.title || item.name || ""}
+            {item.id?.includes("workflowId")
+              ? "WorkFlow"
+              : item.id?.includes("workflowImplementationId")
+              ? "WorkFlow Imp"
+              : item.id?.includes("sellerId")
+              ? "Seller"
+              : item.id?.includes("buyer")
+              ? "Buyer"
+              : item.id?.includes("m-1")
+              ? "Master"
+              : ""}
+          </p>
+          <Card.Title style={{ color: "white", marginTop: "1px" }}>
+            {item.title || item.name || item.seller || item.buyer || ""}
           </Card.Title>
-          <p className="mb-2 text-muted" style={{ color: "#888" }}>
-            {item.Description || ""}
+          <p className="mb-2" style={{ color: "#fff" }}>
+            {item.shortDescription
+              ? item.shortDescription.substring(0, 100)
+              : item.Description
+              ? item.Description.substring(0, 100)
+              : ""}
           </p>
-          <p className="mb-2 text-muted" style={{ color: "#888" }}>
-            {item.id ? item.id : "" || ""}
-            {/* ShortDescription */}
+          {item.status != undefined ? (
+            <p
+              className="mb-2 "
+              style={{ color: "#fff" }}
+            >{`Status: ${item.status}`}</p>
+          ) : null}
+          <br />
+          Sequence Number
+          <br />
+          <p
+            className="dashedBorder"
+            style={{ padding: "3px", paddingLeft: "15px", borderRadius: "5px" }}
+          >
+            {item.sequenceNumber || "NA"}
           </p>
+          Company SubType
+          <br />
           <p
-            className="mb-2 "
-            style={{ color: "#888" }}
-          >{`Workflow: ${item.workflowId}`}</p>
+            className="dashedBorder"
+            style={{ padding: "3px", paddingLeft: "15px", borderRadius: "5px" }}
+          >
+            {" "}
+            {item.companySubType || "NA"}{" "}
+          </p>
+          Value Chain
+          <br />
           <p
-            className="mb-2 "
-            style={{ color: "#888" }}
-          >{`Status: ${item.status}`}</p>
+            className="dashedBorder"
+            style={{ padding: "3px", paddingLeft: "15px", borderRadius: "5px" }}
+          >
+            {item.valueChain || "NA"}
+          </p>
+          Value Chain SubType
           <br />
-          Sequence Number: {item.sequenceNumber || "NA"}
+          <p
+            className="dashedBorder"
+            style={{ padding: "3px", paddingLeft: "15px", borderRadius: "5px" }}
+          >
+            {item.valueChainSubType || "NA"}
+          </p>
+          Line Of Business
+          <p
+            className="dashedBorder"
+            style={{ padding: "3px", paddingLeft: "15px", borderRadius: "5px" }}
+          >
+            {item.lineOfBusiness || "NA"}
+          </p>
+          Line Of Business SubType
           <br />
-          Company SubType: {item.companySubType || "NA"}
-          <br />
-          Value Chain: {item.valueChain || "NA"}
-          <br />
-          Value Chain SubType: {item.valueChainSubType || "NA"}
-          <br />
-          Line Of Business: {item.lineOfBusiness || "NA"}
-          <br />
-          Line Of Business SubType: {item.lineOfBusinessSubType || "NA"}
-          <br />
+          <p
+            className="dashedBorder"
+            style={{ padding: "3px", paddingLeft: "15px", borderRadius: "5px" }}
+          >
+            {item.lineOfBusinessSubType || "NA"}
+          </p>
         </Card.Body>
       </Card>
       {/* </OverlayTrigger> */}
