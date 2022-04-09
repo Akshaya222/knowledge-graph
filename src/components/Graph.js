@@ -10,6 +10,7 @@ import SpriteText from "three-spritetext";
 
 const ExpandableGraph = ({ graphData, setItem }) => {
   const rootId = "m-1";
+
   const nodesById = useMemo(() => {
     const nodesById = Object.fromEntries(
       graphData.nodes.map((node) => [node.id, node])
@@ -50,17 +51,10 @@ const ExpandableGraph = ({ graphData, setItem }) => {
     setPrunedTree(getPrunedTree());
   }, []);
 
-  const nodeHover = (node) => {
-    if (node != null) {
-      setItem(node);
-    }
-    console.log("node is.....", node);
-  };
-
   return (
     <ForceGraph3D
       dagMode="zin"
-      graphData={prunedTree}
+      graphData={getPrunedTree()}
       linkDirectionalParticles={2}
       nodeLabel="id"
       nodeColor={
@@ -75,8 +69,9 @@ const ExpandableGraph = ({ graphData, setItem }) => {
         // !node.childLinks.length ? "green" : node.collapsed ? "red" : "yellow"
       }
       onNodeHover={(node) => {
-        // nodeHover(node);
-        //  console.log("node is....", node);
+        if (node != null) {
+          setItem(node);
+        }
       }}
       onNodeClick={handleNodeClick}
       // nodeRelSize={7}
@@ -84,7 +79,7 @@ const ExpandableGraph = ({ graphData, setItem }) => {
       linkThreeObjectExtend={true}
       linkThreeObject={(link) => {
         // extend link with text sprite
-        const sprite = new SpriteText(`${link.source.id} > ${link.target.id}`);
+        const sprite = new SpriteText(``);
         sprite.color = "lightgrey";
         sprite.textHeight = 1.5;
         return sprite;
