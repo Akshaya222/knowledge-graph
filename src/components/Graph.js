@@ -8,9 +8,10 @@ import React, {
 import { ForceGraph3D } from "react-force-graph";
 import SpriteText from "three-spritetext";
 import * as THREE from "three";
-import {CSS2DRenderer, CSS2DObject} from 'three/examples/jsm/renderers/CSS2DRenderer.js';
-
-
+import {
+  CSS2DRenderer,
+  CSS2DObject,
+} from "three/examples/jsm/renderers/CSS2DRenderer.js";
 
 const ExpandableGraph = ({
   graphData,
@@ -23,20 +24,20 @@ const ExpandableGraph = ({
   const rootId = "m-1";
   const extraRenderers = [new CSS2DRenderer()];
 
-
-  useEffect(()=>{
-    if (containerRef.current){
-    containerRef.current
-      .d3Force("link")
-      .distance((link) => {
-        if (link.target.id.includes( "workflowId")) {
-          // return 80;
-          return 100 ;
-        } else {
-          return 60;
-        }
-      })
-      .strength((link) => 1);};
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current
+        .d3Force("link")
+        .distance((link) => {
+          if (link.target.id.includes("workflowId")) {
+            // return 80;
+            return 100;
+          } else {
+            return 60;
+          }
+        })
+        .strength((link) => 1);
+    }
   });
 
   const nodesById = useMemo(() => {
@@ -79,22 +80,42 @@ const ExpandableGraph = ({
     setPrunedTree(getPrunedTree());
   }, []);
 
+  useEffect(() => {
+    if (Object.keys(graphData).length != 0) {
+      setPrunedTree(getPrunedTree());
+    }
+  }, []);
+
   const renderNode = (node) => {
+    let imgPath;
+    if (node.collapsed) {
+      imgPath = `imgs/${node.alternativeImg}`;
+    } else {
+      imgPath = `imgs/${node.img}`;
+    }
     if (node.img) {
       console.log(node.img);
       const loader = new THREE.TextureLoader();
-      const imgTexture = loader.load(`/imgs/${node.img}`);
+      const imgTexture = loader.load(imgPath);
       const material = new THREE.SpriteMaterial({ map: imgTexture });
       const sprite = new THREE.Sprite(material);
       sprite.scale.set(node.width, node.height);
       return sprite;
-    }
-    else{
-      const nodeEl = document.createElement('div');
-      nodeEl.textContent = "Hello";
-      nodeEl.style.color = "#fff";
+    } else if (node.imgUrl) {
+      const nodeEle = document.createElement("div");
+      const imgEle = document.createElement("img");
+      const p = document.createElement("span");
+      imgEle.src = node.imgUrl;
+      imgEle.style.height = "13px";
+      p.innerText = node.name;
+      p.style.fontSize = "12px";
+      p.style.marginLeft = "3px";
+      nodeEle.appendChild(imgEle);
+      nodeEle.appendChild(p);
+      nodeEle.className = "child-nodes-div";
+      nodeEle.style.borderColor = node.borderColor;
       // nodeEl.className = 'node-label';
-      return new CSS2DObject(nodeEl);
+      return new CSS2DObject(nodeEle);
     }
   };
 
@@ -124,19 +145,13 @@ const ExpandableGraph = ({
       nodeOpacity={0.75}
       nodeVal={(node) => 8 + node.value || 8}
       linkDirectionalParticleSpeed={0.08}
-      nodeColor={
-        (node) =>
-          node.id.includes("workflowId")
-            ? "rgba(119, 1, 216,0.0)"
-            : node.id.includes("workflowImplementationId")
-            ? "#d27dfa"
-            : node.id.includes("sellerId")
-            ? "red"
-            : node.id.includes("buyer")
-            ? "green"
-            : "rgba(119, 1, 216,0.0)"
-        // !node.childLinks.length ? "green" : node.collapsed ? "red" : "yellow"
-      }
+      nodeColor={(node) => {
+        if (node.collapsed) {
+          return node.alternativeColor;
+        } else {
+          return node.color;
+        }
+      }}
       onNodeHover={(node) => {
         if (node != null) {
           setItem(node);

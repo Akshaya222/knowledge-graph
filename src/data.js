@@ -8,6 +8,7 @@ var basedate = [
     size: 500,
     Type: "Master",
     color: "rgba(119, 1, 216,0.0)",
+    alternativeColor: "rgba(119, 1, 216,0.0)",
     strokeColor: "white",
     fontSize: 18,
     img: "master.png",
@@ -33,9 +34,12 @@ const getAllData = (workflowdata, workflowimpdata, sellerdata, buyerdata) => {
       ...{
         id: "workflowId" + x["workflowId"],
         img: "white-box.png",
+        alternativeImg: "white-box-light.png",
         width: 10,
         height: 17,
         visible: false,
+        color: "rgba(119, 1, 216,0.0)",
+        alternativeColor: "rgba(119, 1, 216,0.0)",
       },
       ...x,
     };
@@ -46,6 +50,8 @@ const getAllData = (workflowdata, workflowimpdata, sellerdata, buyerdata) => {
       ...{
         id: "workflowImplementationId" + x["workflowImplementationId"],
         visible: false,
+        color: "rgba(250, 107, 245,1)",
+        alternativeColor: "rgba(250, 107, 245,0.3)",
       },
       ...x,
     };
@@ -57,6 +63,11 @@ const getAllData = (workflowdata, workflowimpdata, sellerdata, buyerdata) => {
       ...{
         id: "sellerId" + x["sellerId"],
         visible: false,
+        color: "rgba(119, 1, 216,0.0)",
+        borderColor: "red",
+        alternativeColor: "rgba(119, 1, 216,0.0)",
+        name: x.seller,
+        imgUrl: x.sellerIconURL ? x.sellerIconURL : "imgs/logo.png",
         workflowImplementationId:
           "workflowImplementationId" + wfimp.workflowImplementationId,
       },
@@ -69,6 +80,11 @@ const getAllData = (workflowdata, workflowimpdata, sellerdata, buyerdata) => {
       ...{
         id: "buyerId" + x["buyerId"],
         visible: false,
+        color: "rgba(119, 1, 216,0.0)",
+        alternativeColor: "rgba(119, 1, 216,0.0)",
+        borderColor: "green",
+        name: x.buyer,
+        imgUrl: x.buyerIconURL ? x.buyerIconURL : "imgs/logo.png",
         workflowImplementationId:
           "workflowImplementationId" + wfimp.workflowImplementationId,
       },

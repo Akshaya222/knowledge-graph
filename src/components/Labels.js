@@ -33,7 +33,7 @@ const Labels = () => {
               <div
                 className="label-circle"
                 style={{
-                  background: "#d27dfa",
+                  background: "#fa6bf5",
                 }}
               ></div>
               <span className="label-text">Implementation</span>
@@ -43,7 +43,7 @@ const Labels = () => {
                 className="label-circle"
                 style={{
                   background: "transparent",
-                  border: "0.5px solid green",
+                  border: "1px solid green",
                 }}
               ></div>
               <span className="label-text">Buyer</span>
@@ -53,7 +53,7 @@ const Labels = () => {
                 className="label-circle"
                 style={{
                   background: "transparent",
-                  border: "0.5px solid red",
+                  border: "1px solid red",
                 }}
               ></div>
               <span className="label-text">Sellar</span>

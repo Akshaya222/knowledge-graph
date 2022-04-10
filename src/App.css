@@ -215,6 +215,17 @@ body {
   align-content: center;
   cursor: move;
 }
+.child-nodes-div {
+  display: flex;
+  flex-direction: row;
+  padding: 6px;
+  color: white;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  align-items: center;
+  height: 24px;
+}
 .zoom-arrow-clock {
   color: #cacaca 0% 0% no-repeat padding-box;
   cursor: pointer;

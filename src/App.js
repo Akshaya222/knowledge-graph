@@ -17,7 +17,7 @@ function App() {
   const [sellers, setSellers] = useState([]);
   const [buyers, setBuyers] = useState([]);
   const [item, setItem] = useState({});
-  const [prunedTree, setPrunedTree] = useState();
+  const [prunedTree, setPrunedTree] = useState({});
   const [unchangedData, setUnchangedData] = useState({});
   const containerRef = useRef({});
 
@@ -71,9 +71,9 @@ function App() {
       <div>
         <div>
           <Header />
-          {/* <Container className="position-absolute">
+          <Container className="position-absolute">
             <Zoom prunedTree={prunedTree} containerRef={containerRef} />
-          </Container> */}
+          </Container>
           <Container className="position-absolute">
             <Filter
               wfdata={wfdata}
@@ -91,7 +91,12 @@ function App() {
             <Labels />
           </Container>
           <Container className="kg">
-            <ExpandableGraph graphData={allData} setItem={setItem} setPrunedTree={setPrunedTree}  containerRef={containerRef}/>
+            <ExpandableGraph
+              graphData={allData}
+              setItem={setItem}
+              setPrunedTree={setPrunedTree}
+              containerRef={containerRef}
+            />
           </Container>
         </div>
       </div>
