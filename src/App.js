@@ -91,7 +91,7 @@ function App() {
             <Labels />
           </Container>
           <Container className="kg">
-            <ExpandableGraph graphData={allData} setItem={setItem} setPrunedTree={setPrunedTree} />
+            <ExpandableGraph graphData={allData} setItem={setItem} setPrunedTree={setPrunedTree}  containerRef={containerRef}/>
           </Container>
         </div>
       </div>

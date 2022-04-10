@@ -8,6 +8,9 @@ import React, {
 import { ForceGraph3D } from "react-force-graph";
 import SpriteText from "three-spritetext";
 import * as THREE from "three";
+import {CSS2DRenderer, CSS2DObject} from 'three/examples/jsm/renderers/CSS2DRenderer.js';
+
+
 
 const ExpandableGraph = ({
   graphData,
@@ -18,19 +21,22 @@ const ExpandableGraph = ({
 }) => {
   const NODE_R = 3;
   const rootId = "m-1";
+  const extraRenderers = [new CSS2DRenderer()];
+
 
   useEffect(()=>{
-    // containerRef.current
-    //   .d3Force("link")
-    //   .distance((link) => {
-    //     if (link.target.Type == "Workflow") {
-    //       // return 80;
-    //       return 80 - (link.weight || 0);
-    //     } else {
-    //       return 60;
-    //     }
-    //   })
-    //   .strength((link) => 1);
+    if (containerRef.current){
+    containerRef.current
+      .d3Force("link")
+      .distance((link) => {
+        if (link.target.id.includes( "workflowId")) {
+          // return 80;
+          return 100 ;
+        } else {
+          return 60;
+        }
+      })
+      .strength((link) => 1);};
   });
 
   const nodesById = useMemo(() => {
@@ -67,6 +73,8 @@ const ExpandableGraph = ({
   }, [nodesById]);
 
   const handleNodeClick = useCallback((node) => {
+    console.log("}}}}}");
+    console.log(node);
     node.collapsed = !node.collapsed; // toggle collapse state
     setPrunedTree(getPrunedTree());
   }, []);
@@ -81,11 +89,19 @@ const ExpandableGraph = ({
       sprite.scale.set(node.width, node.height);
       return sprite;
     }
+    else{
+      const nodeEl = document.createElement('div');
+      nodeEl.textContent = "Hello";
+      nodeEl.style.color = "#fff";
+      // nodeEl.className = 'node-label';
+      return new CSS2DObject(nodeEl);
+    }
   };
 
   return (
     <ForceGraph3D
       ref={containerRef}
+      extraRenderers={extraRenderers}
       dagMode="zin"
       graphData={getPrunedTree()}
       linkDirectionalParticles={2}
@@ -111,7 +127,7 @@ const ExpandableGraph = ({
       nodeColor={
         (node) =>
           node.id.includes("workflowId")
-            ? "blue"
+            ? "rgba(119, 1, 216,0.0)"
             : node.id.includes("workflowImplementationId")
             ? "#d27dfa"
             : node.id.includes("sellerId")
