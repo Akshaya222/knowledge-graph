@@ -18,29 +18,13 @@ const Zoom = ({ prunedTree, containerRef }) => {
       position={zoomPosition}
       onStop={(e, data) => setZoomPosition({ x: data.x, y: data.y })}
     >
-      <Card
-        style={{
-          // width: "30%",
-          margin: "0.8rem",
-          color: "#fff",
-          border: "0.5px solid #8D8D8D",
-          padding: "15px",
-          // borderRadius: "50px",
-          alignContent: "center",
-          cursor: "move",
-          // paddingLeft: "30px",
-        }}
-        className="zoomCardDetails justify-content-center"
-      >
+      <Card className="zoomCardDetails justify-content-center zoom-container">
         <OverlayTrigger
           placement="right"
           overlay={<Tooltip id="tooltip-disabled">Reset</Tooltip>}
         >
           <ArrowClockwise
-            style={{
-              color: "#CACACA 0% 0% no-repeat padding-box",
-              cursor: "pointer",
-            }}
+            className="zoom-arrow-clock"
             onClick={() => {
               setZoomValue(500);
               const node = prunedTree.nodes[0];
@@ -65,11 +49,7 @@ const Zoom = ({ prunedTree, containerRef }) => {
           overlay={<Tooltip id="tooltip-disabled">ZoomIn</Tooltip>}
         >
           <ZoomIn
-            style={{
-              marginTop: "15px",
-              color: "#CACACA 0% 0% no-repeat padding-box",
-              cursor: "pointer",
-            }}
+            className="zoom-zoomIn"
             onClick={() => {
               const node = prunedTree.nodes[0];
               setZoomValue(zoomValue - 20);
@@ -95,11 +75,7 @@ const Zoom = ({ prunedTree, containerRef }) => {
           overlay={<Tooltip id="tooltip-disabled">ZoomOut</Tooltip>}
         >
           <ZoomOut
-            style={{
-              marginTop: "15px",
-              color: "#CACACA 0% 0% no-repeat padding-box",
-              cursor: "pointer",
-            }}
+            className="zoom-zoomIn"
             onClick={() => {
               const node = prunedTree.nodes[0];
               setZoomValue(zoomValue + 20);

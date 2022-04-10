@@ -29,7 +29,14 @@ const getAllData = (workflowdata, workflowimpdata, sellerdata, buyerdata) => {
   console.log(workflowdata);
 
   workflowdata = workflowdata.map(function (x) {
-    return { ...{ id: "workflowId" + x["workflowId"], visible: false }, ...x };
+    return {
+      ...{
+        id: "workflowId" + x["workflowId"],
+        img: "white-box.png",
+        visible: false,
+      },
+      ...x,
+    };
   });
   let wfdata = workflowdata;
   workflowimpdata = workflowimpdata.map(function (x) {

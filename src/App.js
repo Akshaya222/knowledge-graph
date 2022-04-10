@@ -6,6 +6,7 @@ import ExpandableGraph from "./components/Graph";
 import Filter from "./components/Filter";
 import NodeDetail from "./components/NodeDetail";
 import Labels from "./components/Labels";
+import Header from "./components/Header";
 import Zoom from "./components/Zoom";
 var _ = require("lodash");
 
@@ -69,10 +70,11 @@ function App() {
     return (
       <div>
         <div>
-          {/* <Container style={{ position: "absolute" }}>
+          <Header />
+          {/* <Container className="position-absolute">
             <Zoom prunedTree={prunedTree} containerRef={containerRef} />
           </Container> */}
-          <Container style={{ position: "absolute" }}>
+          <Container className="position-absolute">
             <Filter
               wfdata={wfdata}
               wfdataImp={wfdataImp}
@@ -82,10 +84,10 @@ function App() {
               unchangedData={unchangedData}
             />
           </Container>
-          <Container style={{ position: "absolute" }}>
+          <Container className="position-absolute">
             <NodeDetail item={item} />
           </Container>
-          <Container style={{ position: "absolute", cursor: "move" }}>
+          <Container className="position-absolute curser-move ">
             <Labels />
           </Container>
           <Container className="kg">

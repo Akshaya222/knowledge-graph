@@ -24,28 +24,10 @@ const NodeDetail = ({ item }) => {
       position={detailPosition}
       onStop={(e, data) => setDetailPosition({ x: data.x, y: data.y })}
     >
-      <Card
-        style={{
-          width: "25%",
-          margin: "0.8rem",
-          height: "95vh",
-          overflowY: "scroll",
-          scrollbarWidth: "thin",
-          scrollbarColor: "  rgba(229, 229, 229, 0.6) rgba(229, 229, 229, 0.4)",
-        }}
-        className="infoCardDetails"
-      >
+      <Card className="infoCardDetails node-details-card">
         <Card.Header className="infoCardDetailsHeader">Node Detail</Card.Header>
         <Card.Body>
-          <p
-            style={{
-              color: "#fff",
-              textAlign: "center",
-              padding: "3px",
-              border: "1px dashed white",
-              borderRadius: "5px",
-            }}
-          >
+          <p className="node-details-card-body">
             {item.id?.includes("workflowId")
               ? "WorkFlow"
               : item.id?.includes("workflowImplementationId")
@@ -58,10 +40,10 @@ const NodeDetail = ({ item }) => {
               ? "Master"
               : ""}
           </p>
-          <Card.Title style={{ color: "white", marginTop: "1px" }}>
+          <Card.Title className="node-details-item-name">
             {item.title || item.name || item.seller || item.buyer || ""}
           </Card.Title>
-          <p className="mb-2" style={{ color: "#fff" }}>
+          <p className="mb-2 text-white">
             {item.shortDescription
               ? item.shortDescription.substring(0, 100)
               : item.Description
@@ -69,58 +51,37 @@ const NodeDetail = ({ item }) => {
               : ""}
           </p>
           {item.status != undefined ? (
-            <p
-              className="mb-2 "
-              style={{ color: "#fff" }}
-            >{`Status: ${item.status}`}</p>
+            <p className="mb-2 text-white">{`Status: ${item.status}`}</p>
           ) : null}
           <br />
           Sequence Number
           <br />
-          <p
-            className="dashedBorder"
-            style={{ padding: "3px", paddingLeft: "15px", borderRadius: "5px" }}
-          >
+          <p className="dashedBorder node-details-borders">
             {item.sequenceNumber || "NA"}
           </p>
           Company SubType
           <br />
-          <p
-            className="dashedBorder"
-            style={{ padding: "3px", paddingLeft: "15px", borderRadius: "5px" }}
-          >
+          <p className="dashedBorder node-details-borders">
             {" "}
             {item.companySubType || "NA"}{" "}
           </p>
           Value Chain
           <br />
-          <p
-            className="dashedBorder"
-            style={{ padding: "3px", paddingLeft: "15px", borderRadius: "5px" }}
-          >
+          <p className="dashedBorder node-details-borders">
             {item.valueChain || "NA"}
           </p>
           Value Chain SubType
           <br />
-          <p
-            className="dashedBorder"
-            style={{ padding: "3px", paddingLeft: "15px", borderRadius: "5px" }}
-          >
+          <p className="dashedBorder node-details-borders">
             {item.valueChainSubType || "NA"}
           </p>
           Line Of Business
-          <p
-            className="dashedBorder"
-            style={{ padding: "3px", paddingLeft: "15px", borderRadius: "5px" }}
-          >
+          <p className="dashedBorder node-details-borders">
             {item.lineOfBusiness || "NA"}
           </p>
           Line Of Business SubType
           <br />
-          <p
-            className="dashedBorder"
-            style={{ padding: "3px", paddingLeft: "15px", borderRadius: "5px" }}
-          >
+          <p className="dashedBorder node-details-borders">
             {item.lineOfBusinessSubType || "NA"}
           </p>
         </Card.Body>
