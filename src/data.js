@@ -20,16 +20,9 @@ var basedate = [
   },
 ];
 const getAllData = (workflowdata, workflowimpdata, sellerdata, buyerdata) => {
-  console.log("-----");
-  console.log(workflowdata);
-
   workflowdata = workflowdata.map(function (x) {
     return { ...{ id: "workflowId" + x["workflowId"], visible: false }, ...x };
   });
-
-  console.log("-----");
-  console.log(workflowdata);
-
   workflowdata = workflowdata.map(function (x) {
     return {
       ...{
@@ -53,9 +46,9 @@ const getAllData = (workflowdata, workflowimpdata, sellerdata, buyerdata) => {
       ...{
         id: "workflowImplementationId" + x["workflowImplementationId"],
         visible: false,
-        color: "rgba(250, 107, 245,1)",
-        alternativeColor: "rgba(250, 107, 245,0.3)",
-        renderColor: "rgba(250, 107, 245,1)",
+        color: "#fa6bf5",
+        alternativeColor: "#fa6bf5",
+        renderColor: "#fa6bf5",
       },
       ...x,
     };
@@ -137,8 +130,6 @@ const getAllData = (workflowdata, workflowimpdata, sellerdata, buyerdata) => {
   );
 
   workflowdata = { nodes: nodes, links: links };
-  console.log("||||");
-  console.log("workflowdata................", workflowdata);
   return { workflowdata, wfdata, workflowimpdata, sellerdata, buyerdata };
 };
 //filterdata function
@@ -732,13 +723,6 @@ const filterData = (allNodes, filteredObj) => {
   newbuyers = [...set2];
   var set3 = new Set(newsellers);
   newsellers = [...set3];
-  console.log(
-    "newData",
-    newworkflowdata,
-    newworkflowimp,
-    newbuyers,
-    newsellers
-  );
   return {
     workflowdata: newworkflowdata,
     workflowimpdata: newworkflowimp,

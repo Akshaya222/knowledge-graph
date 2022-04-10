@@ -33,7 +33,7 @@ const Zoom = ({ prunedTree, containerRef }) => {
                 const distance = zoomValue; //200
                 const distRatio =
                   1 + distance / Math.hypot(node.x, node.y, node.z);
-                // console.log(containerRef);
+
                 containerRef.current.cameraPosition(
                   {
                     x: node.x * distRatio,
@@ -61,7 +61,7 @@ const Zoom = ({ prunedTree, containerRef }) => {
                 const distance = zoomValue; //200
                 const distRatio =
                   1 + distance / Math.hypot(node.x, node.y, node.z);
-                // console.log(containerRef);
+
                 containerRef.current.cameraPosition(
                   {
                     x: node.x * distRatio,

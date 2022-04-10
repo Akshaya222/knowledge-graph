@@ -74,12 +74,17 @@ const ExpandableGraph = ({
   }, [nodesById]);
 
   const handleNodeClick = useCallback((node) => {
+    let prunedTree = getPrunedTree();
     node.collapsed = !node.collapsed;
     if (node.id.includes("workflowId")) {
       if (!node.collapsed) {
-        prunedTree.nodes.map((n) => {
+        prunedTree = prunedTree.nodes.map((n) => {
           if (n.id.includes("workflowId")) {
-            console.log("*********", n.id);
+            if (!n.collapsed) {
+              return (n.renderImg = n.img);
+            } else {
+              return (n.renderImg = n.alternativeImg);
+            }
           }
         });
       }
@@ -111,7 +116,6 @@ const ExpandableGraph = ({
       } else {
         imgPath = `imgs/${node.renderImg}`;
       }
-      console.log(node.img);
       const loader = new THREE.TextureLoader();
       const imgTexture = loader.load(imgPath);
       const material = new THREE.SpriteMaterial({ map: imgTexture });

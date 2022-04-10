@@ -44,10 +44,6 @@ function App() {
     );
     buyers = buyers.data;
     let data = getAllData(workflowlist, workflowimpl, sellers, buyers);
-    console.log(
-      "*********************************************",
-      data.workflowdata
-    );
     setAllData(data.workflowdata);
     setUnchangedData(data.workflowdata);
     setWfData(data.wfdata);
