@@ -18,6 +18,21 @@ const ExpandableGraph = ({
 }) => {
   const NODE_R = 3;
   const rootId = "m-1";
+
+  useEffect(()=>{
+    // containerRef.current
+    //   .d3Force("link")
+    //   .distance((link) => {
+    //     if (link.target.Type == "Workflow") {
+    //       // return 80;
+    //       return 80 - (link.weight || 0);
+    //     } else {
+    //       return 60;
+    //     }
+    //   })
+    //   .strength((link) => 1);
+  });
+
   const nodesById = useMemo(() => {
     const nodesById = Object.fromEntries(
       graphData.nodes.map((node) => [node.id, node])
@@ -89,9 +104,9 @@ const ExpandableGraph = ({
 
   return (
     <ForceGraph3D
+      ref={containerRef}
       dagMode="zin"
       graphData={getPrunedTree()}
-      ref={containerRef}
       linkDirectionalParticles={2}
       nodeLabel={(node) =>
         `<span style="color: #fff">${node.title || node.name || node.id}</span>`
@@ -139,6 +154,18 @@ const ExpandableGraph = ({
         sprite.textHeight = 1.5;
         return sprite;
       }}
+      linkResolution={20}
+      linkDirectionalParticleSpeed={0.08}
+      linkWidth={1.8}
+      // dagLevelDistance={120}
+      d3VelocityDecay={0.3}
+      linkDirectionalParticles={(link) => {
+        return link.target.linkDirectionalParticles || 0;
+      }}
+      linkDirectionalParticleWidth={(link) => {
+        return link.target.linkDirectionalParticleWidth || 0.5;
+      }}
+      d3VelocityDecay={0.3}
       nodeThreeObjectExtend={true}
       nodeThreeObject={(node, canvasContext, scale) =>
         renderNode(node, canvasContext, scale)
