@@ -99,6 +99,10 @@ body {
   letter-spacing: 1px;
   color: #fff;
   font-size: 22px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   opacity: 1;
 }
 .infoCardFilterCardBody {
@@ -183,7 +187,9 @@ body {
 .node-details-card {
   width: 25%;
   margin: 0.8rem;
-  height: 85vh;
+}
+.node-details-card-body-hei {
+  height: 80vh;
   overflow-y: scroll;
   scrollbar-width: thin;
   scrollbar-color: rgba(229, 229, 229, 0.6) rgba(229, 229, 229, 0.4);
@@ -210,7 +216,6 @@ body {
 .zoom-container {
   margin: 0.8rem;
   color: #fff;
-  border: 0.5px solid #8d8d8d;
   padding: 15px;
   align-content: center;
   cursor: move;
@@ -256,6 +261,10 @@ body {
   padding: 10px;
   cursor: move;
   z-index: 11;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   /* background-color: #2196F3;
     color: #fff; */
 }
@@ -272,12 +281,20 @@ body {
   position: absolute;
   z-index: 8;
 }
+.zoom-symbol {
+  border: 1px solid white;
+  padding: 0px 14px 10px 14px;
+  border-radius: 5px;
+  margin-right: "6px";
+}
 .zoomCardDetails {
   background-color: #171717;
   color: white;
   position: absolute;
   z-index: 8;
-  opacity: 0.75;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 .loader-container {
   height: 100vh;

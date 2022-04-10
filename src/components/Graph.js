@@ -74,9 +74,26 @@ const ExpandableGraph = ({
   }, [nodesById]);
 
   const handleNodeClick = useCallback((node) => {
-    console.log("}}}}}");
-    console.log(node);
-    node.collapsed = !node.collapsed; // toggle collapse state
+    node.collapsed = !node.collapsed;
+    if (node.id.includes("workflowId")) {
+      if (!node.collapsed) {
+        prunedTree.nodes.map((n) => {
+          if (n.id.includes("workflowId")) {
+            console.log("*********", n.id);
+          }
+        });
+      }
+    }
+    if (node.id.includes("workflowImplementation")) {
+      if (!node.collapsed) {
+        prunedTree.nodes.map((n) => {
+          if (n.id.includes("workflowImplementation") && n.id !== node.id) {
+            n.renderColor = n.alternativeColor;
+          }
+        });
+      } else {
+      }
+    }
     setPrunedTree(getPrunedTree());
   }, []);
 
@@ -88,12 +105,12 @@ const ExpandableGraph = ({
 
   const renderNode = (node) => {
     let imgPath;
-    if (node.collapsed) {
-      imgPath = `imgs/${node.alternativeImg}`;
-    } else {
-      imgPath = `imgs/${node.img}`;
-    }
     if (node.img) {
+      if (node.id == "m-1") {
+        imgPath = `imgs/${node.img}`;
+      } else {
+        imgPath = `imgs/${node.renderImg}`;
+      }
       console.log(node.img);
       const loader = new THREE.TextureLoader();
       const imgTexture = loader.load(imgPath);
@@ -146,11 +163,7 @@ const ExpandableGraph = ({
       nodeVal={(node) => 8 + node.value || 8}
       linkDirectionalParticleSpeed={0.08}
       nodeColor={(node) => {
-        if (node.collapsed) {
-          return node.alternativeColor;
-        } else {
-          return node.color;
-        }
+        return node.renderColor;
       }}
       onNodeHover={(node) => {
         if (node != null) {

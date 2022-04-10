@@ -94,6 +94,7 @@ function App() {
             <ExpandableGraph
               graphData={allData}
               setItem={setItem}
+              prunedTree={prunedTree}
               setPrunedTree={setPrunedTree}
               containerRef={containerRef}
             />

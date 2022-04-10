@@ -13,6 +13,12 @@ import useWindowDimensions from "../hooks/useWindowDimensions";
 import Draggable, { DraggableCore } from "react-draggable"; // Both at the same time
 import { filterData, getAllData } from "../data";
 import s from "react-multiple-select-dropdown-lite";
+import {
+  PatchPlusFill,
+  PlusCircleDotted,
+  PlusCircleFill,
+  XOctagon,
+} from "react-bootstrap-icons";
 
 const Filter = ({
   wfdata,
@@ -35,6 +41,7 @@ const Filter = ({
     companyType: [],
     companySubType: [],
   });
+  const [show, setShow] = useState(false);
   var [filterPosition, setFilterPosition] = useState({
     x: 0 + width * 0.03,
     y: 10,
@@ -229,228 +236,236 @@ const Filter = ({
     >
       <Card className="infoCardFilter">
         <Card.Header className="infoCardFilterHeader">
-          Select Filters
+          <p> Select Filters</p>
+          <p onClick={() => setShow(!show)}>
+            {show ? (
+              <XOctagon color="#f72a51" />
+            ) : (
+              <PatchPlusFill color="#f72a51" size={20} />
+            )}
+          </p>
         </Card.Header>
+        {show ? (
+          <Card.Body>
+            <div className="infoCardFilterCardBody">
+              <Form.Label
+                htmlFor="filterSelect"
+                className="multiselect-form-label"
+              >
+                Workflow Name
+              </Form.Label>
+              <Multiselect
+                showCheckbox={true}
+                isObject={false}
+                options={CNameoptions} // Options to display in the dropdown
+                // Preselected value to persist in dropdown
+                displayValue="name" // Property name to display in the dropdown options
+                onSelect={handleOnchangeWfName}
+                onRemove={handleOnchangeWfName}
+              />
+              <br />
+              <Form.Label
+                htmlFor="filterSelectType"
+                className="multiselect-form-label"
+              >
+                Workflow Type
+              </Form.Label>
+              <Multiselect
+                showCheckbox={true}
+                isObject={false}
+                options={wfTypeOptions} // Options to display in the dropdown
+                // Preselected value to persist in dropdown
+                displayValue="Type" // Property name to display in the dropdown options
+                onSelect={handleOnchangeWfType}
+                onRemove={handleOnchangeWfType}
+              />
+              <br />
+              <Form.Label
+                htmlFor="filterSelectStatus"
+                className="multiselect-form-label"
+              >
+                Workflow Status
+              </Form.Label>
+              <Multiselect
+                showCheckbox={true}
+                isObject={false}
+                options={wfStatusOptions} // Options to display in the dropdown
+                // Preselected value to persist in dropdown
+                displayValue="Type" // Property name to display in the dropdown options
+                onSelect={handleOnchangeWfStatus}
+                onRemove={handleOnchangeWfStatus}
+              />
 
-        <Card.Body>
-          <div className="infoCardFilterCardBody">
-            <Form.Label
-              htmlFor="filterSelect"
-              className="multiselect-form-label"
-            >
-              Workflow Name
-            </Form.Label>
-            <Multiselect
-              showCheckbox={true}
-              isObject={false}
-              options={CNameoptions} // Options to display in the dropdown
-              // Preselected value to persist in dropdown
-              displayValue="name" // Property name to display in the dropdown options
-              onSelect={handleOnchangeWfName}
-              onRemove={handleOnchangeWfName}
-            />
-            <br />
-            <Form.Label
-              htmlFor="filterSelectType"
-              className="multiselect-form-label"
-            >
-              Workflow Type
-            </Form.Label>
-            <Multiselect
-              showCheckbox={true}
-              isObject={false}
-              options={wfTypeOptions} // Options to display in the dropdown
-              // Preselected value to persist in dropdown
-              displayValue="Type" // Property name to display in the dropdown options
-              onSelect={handleOnchangeWfType}
-              onRemove={handleOnchangeWfType}
-            />
-            <br />
-            <Form.Label
-              htmlFor="filterSelectStatus"
-              className="multiselect-form-label"
-            >
-              Workflow Status
-            </Form.Label>
-            <Multiselect
-              showCheckbox={true}
-              isObject={false}
-              options={wfStatusOptions} // Options to display in the dropdown
-              // Preselected value to persist in dropdown
-              displayValue="Type" // Property name to display in the dropdown options
-              onSelect={handleOnchangeWfStatus}
-              onRemove={handleOnchangeWfStatus}
-            />
+              <br />
+              <Form.Label
+                htmlFor="filterSelect"
+                className="multiselect-form-label"
+              >
+                Partner Name
+              </Form.Label>
+              <Multiselect
+                showCheckbox={true}
+                isObject={false}
+                options={partnerNamesOptions} // Options to display in the dropdown
+                // selectedValues={this.companyOptions} // Preselected value to persist in dropdown
+                onSelect={handleOnchangePartnerName} // Function will trigger on select event
+                onRemove={handleOnchangePartnerName} // Function will trigger on remove event
+                displayValue="name" // Property name to display in the dropdown options
+              />
+              <Form.Label
+                htmlFor="filterBusinessType"
+                className="multiselect-form-label"
+              >
+                Line of Business Type
+              </Form.Label>
+              <Multiselect
+                showCheckbox={true}
+                isObject={false}
+                options={lineOfBusinessOptions} // Options to display in the dropdown
+                // selectedValues={this.companyOptions} // Preselected value to persist in dropdown
+                onSelect={handleOnchangeBusiType} // Function will trigger on select event
+                onRemove={handleOnchangeBusiType} // Function will trigger on remove event
+                displayValue="Business Type" // Property name to display in the dropdown options
+              />
+              <br />
+              <Form.Label
+                htmlFor="filterBusinessSubType"
+                className="multiselect-form-label"
+              >
+                Line of Business SubType
+              </Form.Label>
+              <Multiselect
+                showCheckbox={true}
+                isObject={false}
+                options={lineOfBusSubTyOptions} // Options to display in the dropdown
+                // selectedValues={this.companyOptions} // Preselected value to persist in dropdown
+                onSelect={handleOnchangeBusiSubType} // Function will trigger on select event
+                onRemove={handleOnchangeBusiSubType} // Function will trigger on remove event
+                displayValue="Sub Type" // Property name to display in the dropdown options
+              />
+
+              <Form.Label
+                htmlFor="filterValueChain"
+                className="multiselect-form-label"
+              >
+                Value Chain Type
+              </Form.Label>
+              <Multiselect
+                showCheckbox={true}
+                isObject={false}
+                options={valueChainOptions} // Options to display in the dropdown
+                // selectedValues={this.companyOptions} // Preselected value to persist in dropdown
+                onSelect={handleOnchangeValueChainType} // Function will trigger on select event
+                onRemove={handleOnchangeValueChainType} // Function will trigger on remove event
+                displayValue="value chain" // Property name to display in the dropdown options
+              />
+              <Form.Label
+                htmlFor="filterValueSubType"
+                className="multiselect-form-label"
+              >
+                Value Chain Sub Type
+              </Form.Label>
+              <Multiselect
+                showCheckbox={true}
+                isObject={false}
+                options={valueChainSubOptions} // Options to display in the dropdown
+                // selectedValues={this.companyOptions} // Preselected value to persist in dropdown
+                onSelect={handleOnchangeValueChainSubType} // Function will trigger on select event
+                onRemove={handleOnchangeValueChainSubType} // Function will trigger on remove event
+                displayValue="value chain sub" // Property name to display in the dropdown options
+              />
+              <Form.Label
+                htmlFor="filterCompanyType"
+                className="multiselect-form-label"
+              >
+                Company Type
+              </Form.Label>
+              <Multiselect
+                isObject={false}
+                showCheckbox={true}
+                options={companyTypeOptions} // Options to display in the dropdown
+                // selectedValues={this.companyOptions} // Preselected value to persist in dropdown
+                onSelect={handleOnchangeCompanyType} // Function will trigger on select event
+                onRemove={handleOnchangeCompanySubType} // Function will trigger on remove event
+                displayValue="company type" // Property name to display in the dropdown options
+              />
+              <Form.Label
+                htmlFor="filterCompanySubType"
+                className="multiselect-form-label"
+              >
+                Company Sub Type
+              </Form.Label>
+              <Multiselect
+                showCheckbox={true}
+                isObject={false}
+                options={companySubTypeOptions} // Options to display in the dropdown
+                // selectedValues={this.companyOptions} // Preselected value to persist in dropdown
+                onSelect={handleOnchangeCompanySubType} // Function will trigger on select event
+                onRemove={handleOnchangeCompanySubType} // Function will trigger on remove event
+                displayValue="company sub type" // Property name to display in the dropdown options
+              />
+            </div>
 
             <br />
-            <Form.Label
-              htmlFor="filterSelect"
-              className="multiselect-form-label"
+            <Button
+              variant="primary"
+              className="filter-button"
+              onClick={() => {
+                let updatedFilteredObj = filteredObj;
+                if (filteredObj.names.length == 0) {
+                  updatedFilteredObj.names.push("All");
+                }
+                if (filteredObj.partnerNames.length == 0) {
+                  updatedFilteredObj.partnerNames.push("All");
+                }
+                if (filteredObj.wfStatus.length == 0) {
+                  updatedFilteredObj.wfStatus.push("All");
+                }
+                if (filteredObj.wfType.length == 0) {
+                  updatedFilteredObj.wfType.push("All");
+                }
+                if (filteredObj.busiType.length == 0) {
+                  updatedFilteredObj.busiType.push("All");
+                }
+                if (filteredObj.busiSubType.length == 0) {
+                  updatedFilteredObj.busiSubType.push("All");
+                }
+                if (filteredObj.valueChainType.length == 0) {
+                  updatedFilteredObj.valueChainType.push("All");
+                }
+                if (filteredObj.valueChainSubType.length == 0) {
+                  updatedFilteredObj.valueChainSubType.push("All");
+                }
+                if (filteredObj.companyType.length == 0) {
+                  updatedFilteredObj.companyType.push("All");
+                }
+                if (filteredObj.companySubType.length == 0) {
+                  updatedFilteredObj.companySubType.push("All");
+                }
+                let { workflowdata, workflowimpdata, sellerdata, buyerdata } =
+                  filterData(allNodes, updatedFilteredObj);
+                let data = getAllData(
+                  workflowdata,
+                  workflowimpdata,
+                  sellerdata,
+                  buyerdata
+                );
+                setAllData(data.workflowdata);
+              }}
             >
-              Partner Name
-            </Form.Label>
-            <Multiselect
-              showCheckbox={true}
-              isObject={false}
-              options={partnerNamesOptions} // Options to display in the dropdown
-              // selectedValues={this.companyOptions} // Preselected value to persist in dropdown
-              onSelect={handleOnchangePartnerName} // Function will trigger on select event
-              onRemove={handleOnchangePartnerName} // Function will trigger on remove event
-              displayValue="name" // Property name to display in the dropdown options
-            />
-            <Form.Label
-              htmlFor="filterBusinessType"
-              className="multiselect-form-label"
+              Filter
+            </Button>
+            <Button
+              variant="primary"
+              className="reset-button"
+              onClick={() => {
+                window.location.reload(false);
+              }}
             >
-              Line of Business Type
-            </Form.Label>
-            <Multiselect
-              showCheckbox={true}
-              isObject={false}
-              options={lineOfBusinessOptions} // Options to display in the dropdown
-              // selectedValues={this.companyOptions} // Preselected value to persist in dropdown
-              onSelect={handleOnchangeBusiType} // Function will trigger on select event
-              onRemove={handleOnchangeBusiType} // Function will trigger on remove event
-              displayValue="Business Type" // Property name to display in the dropdown options
-            />
-            <br />
-            <Form.Label
-              htmlFor="filterBusinessSubType"
-              className="multiselect-form-label"
-            >
-              Line of Business SubType
-            </Form.Label>
-            <Multiselect
-              showCheckbox={true}
-              isObject={false}
-              options={lineOfBusSubTyOptions} // Options to display in the dropdown
-              // selectedValues={this.companyOptions} // Preselected value to persist in dropdown
-              onSelect={handleOnchangeBusiSubType} // Function will trigger on select event
-              onRemove={handleOnchangeBusiSubType} // Function will trigger on remove event
-              displayValue="Sub Type" // Property name to display in the dropdown options
-            />
-
-            <Form.Label
-              htmlFor="filterValueChain"
-              className="multiselect-form-label"
-            >
-              Value Chain Type
-            </Form.Label>
-            <Multiselect
-              showCheckbox={true}
-              isObject={false}
-              options={valueChainOptions} // Options to display in the dropdown
-              // selectedValues={this.companyOptions} // Preselected value to persist in dropdown
-              onSelect={handleOnchangeValueChainType} // Function will trigger on select event
-              onRemove={handleOnchangeValueChainType} // Function will trigger on remove event
-              displayValue="value chain" // Property name to display in the dropdown options
-            />
-            <Form.Label
-              htmlFor="filterValueSubType"
-              className="multiselect-form-label"
-            >
-              Value Chain Sub Type
-            </Form.Label>
-            <Multiselect
-              showCheckbox={true}
-              isObject={false}
-              options={valueChainSubOptions} // Options to display in the dropdown
-              // selectedValues={this.companyOptions} // Preselected value to persist in dropdown
-              onSelect={handleOnchangeValueChainSubType} // Function will trigger on select event
-              onRemove={handleOnchangeValueChainSubType} // Function will trigger on remove event
-              displayValue="value chain sub" // Property name to display in the dropdown options
-            />
-            <Form.Label
-              htmlFor="filterCompanyType"
-              className="multiselect-form-label"
-            >
-              Company Type
-            </Form.Label>
-            <Multiselect
-              isObject={false}
-              showCheckbox={true}
-              options={companyTypeOptions} // Options to display in the dropdown
-              // selectedValues={this.companyOptions} // Preselected value to persist in dropdown
-              onSelect={handleOnchangeCompanyType} // Function will trigger on select event
-              onRemove={handleOnchangeCompanySubType} // Function will trigger on remove event
-              displayValue="company type" // Property name to display in the dropdown options
-            />
-            <Form.Label
-              htmlFor="filterCompanySubType"
-              className="multiselect-form-label"
-            >
-              Company Sub Type
-            </Form.Label>
-            <Multiselect
-              showCheckbox={true}
-              isObject={false}
-              options={companySubTypeOptions} // Options to display in the dropdown
-              // selectedValues={this.companyOptions} // Preselected value to persist in dropdown
-              onSelect={handleOnchangeCompanySubType} // Function will trigger on select event
-              onRemove={handleOnchangeCompanySubType} // Function will trigger on remove event
-              displayValue="company sub type" // Property name to display in the dropdown options
-            />
-          </div>
-
-          <br />
-          <Button
-            variant="primary"
-            className="filter-button"
-            onClick={() => {
-              let updatedFilteredObj = filteredObj;
-              if (filteredObj.names.length == 0) {
-                updatedFilteredObj.names.push("All");
-              }
-              if (filteredObj.partnerNames.length == 0) {
-                updatedFilteredObj.partnerNames.push("All");
-              }
-              if (filteredObj.wfStatus.length == 0) {
-                updatedFilteredObj.wfStatus.push("All");
-              }
-              if (filteredObj.wfType.length == 0) {
-                updatedFilteredObj.wfType.push("All");
-              }
-              if (filteredObj.busiType.length == 0) {
-                updatedFilteredObj.busiType.push("All");
-              }
-              if (filteredObj.busiSubType.length == 0) {
-                updatedFilteredObj.busiSubType.push("All");
-              }
-              if (filteredObj.valueChainType.length == 0) {
-                updatedFilteredObj.valueChainType.push("All");
-              }
-              if (filteredObj.valueChainSubType.length == 0) {
-                updatedFilteredObj.valueChainSubType.push("All");
-              }
-              if (filteredObj.companyType.length == 0) {
-                updatedFilteredObj.companyType.push("All");
-              }
-              if (filteredObj.companySubType.length == 0) {
-                updatedFilteredObj.companySubType.push("All");
-              }
-              let { workflowdata, workflowimpdata, sellerdata, buyerdata } =
-                filterData(allNodes, updatedFilteredObj);
-              let data = getAllData(
-                workflowdata,
-                workflowimpdata,
-                sellerdata,
-                buyerdata
-              );
-              setAllData(data.workflowdata);
-            }}
-          >
-            Filter
-          </Button>
-          <Button
-            variant="primary"
-            className="reset-button"
-            onClick={() => {
-              window.location.reload(false);
-            }}
-          >
-            Reset
-          </Button>
-        </Card.Body>
+              Reset
+            </Button>
+          </Card.Body>
+        ) : null}
       </Card>
     </Draggable>
   );
