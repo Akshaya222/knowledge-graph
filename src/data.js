@@ -13,46 +13,63 @@ var basedate = [
     fontSize: 18,
     img: "master.png",
     renderColor: "rgba(119, 1, 216,0.0)",
-    height: 20,
-    width: 20,
+    height: 40,
+    width: 40,
     // "ins-hex.png",
     visible: true,
   },
 ];
 const getAllData = (workflowdata, workflowimpdata, sellerdata, buyerdata) => {
+
+  var wfids = []
+  workflowimpdata = workflowimpdata.map(function (x) {
+    wfids.push(x["workflowId"])
+    return {
+      ...{
+        id: "workflowImplementationId" + x["workflowImplementationId"],
+        visible: false,
+        color: "rgba(255, 179, 215,1.0)",
+        alternativeColor: "rgba(255, 179, 215,0.5)",
+        renderColor: "rgba(255, 179, 215,1.0)",
+      },
+      ...x,
+    };
+  });
+  
   workflowdata = workflowdata.map(function (x) {
     return { ...{ id: "workflowId" + x["workflowId"], visible: false }, ...x };
   });
+
+
   workflowdata = workflowdata.map(function (x) {
+    var xcolor = "#8B17E7";
+    console.log(x["workflowId"]);
+    console.log(wfids);
+    if (wfids.includes(x["workflowId"].toString())){
+      xcolor = "#8B17E7";
+    }
+    else{
+      xcolor = "#D1A2F5";
+    }
     return {
       ...{
         id: "workflowId" + x["workflowId"],
-        img: "white-box.png",
-        renderImg: "white-box.png",
-        alternativeImg: "white-box-light.png",
+        // img: "white-box.png",
+        // renderImg: "white-box.png",
+        // alternativeImg: "white-box-light.png",
         width: 10,
         height: 17,
         visible: false,
-        color: "rgba(119, 1, 216,0.0)",
-        alternativeColor: "rgba(119, 1, 216,0.0)",
-        renderColor: "rgba(119, 1, 216,0.0)",
+        color: xcolor,
+        alternativeColor: "#D1A2F5",
+        renderColor: xcolor,
       },
       ...x,
     };
   });
   let wfdata = workflowdata;
-  workflowimpdata = workflowimpdata.map(function (x) {
-    return {
-      ...{
-        id: "workflowImplementationId" + x["workflowImplementationId"],
-        visible: false,
-        color: "#fa6bf5",
-        alternativeColor: "#fa6bf5",
-        renderColor: "#fa6bf5",
-      },
-      ...x,
-    };
-  });
+
+  
 
   sellerdata = sellerdata.map(function (x) {
     let wfimp = workflowimpdata.find((y) => x.workflowImplementation == y.name);

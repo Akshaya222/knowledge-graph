@@ -17,6 +17,8 @@ import {
   PlusCircleDotted,
   PlusCircleFill,
   XOctagon,
+  FullscreenExit,
+  Fullscreen
 } from "react-bootstrap-icons";
 const NodeDetail = ({ item }) => {
   const { height, width } = useWindowDimensions();
@@ -35,9 +37,13 @@ const NodeDetail = ({ item }) => {
           <p>Node Detail</p>
           <p onClick={() => setShow(!show)}>
             {show ? (
-              <XOctagon color="#f72a51" />
+              <Container style={{ background:"red", paddingTop:"1px", paddingBottom:"3px", paddingLeft:"6px", paddingRight:"6px"}}>
+              <FullscreenExit color="#fff"  /></Container>
             ) : (
-              <PatchPlusFill color="#f72a51" size={20} />
+              <div>
+            <Container style={{ background:"#6c4197", paddingTop:"1px", paddingBottom:"3px", paddingLeft:"6px", paddingRight:"6px"}}>
+              <Fullscreen color="#fff"  /></Container>
+              </div>
             )}
           </p>
         </Card.Header>
@@ -61,9 +67,9 @@ const NodeDetail = ({ item }) => {
             </Card.Title>
             <p className="mb-2 text-white">
               {item.shortDescription
-                ? item.shortDescription.substring(0, 100)
+                ? item.shortDescription
                 : item.Description
-                ? item.Description.substring(0, 100)
+                ? item.Description
                 : ""}
             </p>
             {item.status != undefined ? (

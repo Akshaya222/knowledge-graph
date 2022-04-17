@@ -18,6 +18,8 @@ import {
   PlusCircleDotted,
   PlusCircleFill,
   XOctagon,
+  FullscreenExit,
+  Fullscreen
 } from "react-bootstrap-icons";
 
 const Filter = ({
@@ -43,7 +45,7 @@ const Filter = ({
   });
   const [show, setShow] = useState(false);
   var [filterPosition, setFilterPosition] = useState({
-    x: 0 + width * 0.03,
+    x: -15 ,
     y: 10,
   });
 
@@ -237,11 +239,15 @@ const Filter = ({
       <Card className="infoCardFilter">
         <Card.Header className="infoCardFilterHeader">
           <p> Select Filters</p>
-          <p onClick={() => setShow(!show)}>
+          <p onClick={() => setShow(!show)} style={{marginLeft:"60px"}}>
             {show ? (
-              <XOctagon color="#f72a51" />
-            ) : (
-              <PatchPlusFill color="#f72a51" size={20} />
+                <Container style={{ background:"red", paddingTop:"1px", paddingBottom:"3px", paddingLeft:"6px", paddingRight:"6px"}}>
+                <FullscreenExit color="#fff"  /></Container>
+              ) : (
+       
+              <Container style={{ background:"#6c4197", paddingTop:"1px", paddingBottom:"3px", paddingLeft:"6px", paddingRight:"6px"}}>
+                <Fullscreen color="#fff"  /></Container>
+          
             )}
           </p>
         </Card.Header>
@@ -328,7 +334,7 @@ const Filter = ({
                 displayValue="Business Type" // Property name to display in the dropdown options
               />
               <br />
-              <Form.Label
+              {/* <Form.Label
                 htmlFor="filterBusinessSubType"
                 className="multiselect-form-label"
               >
@@ -342,7 +348,7 @@ const Filter = ({
                 onSelect={handleOnchangeBusiSubType} // Function will trigger on select event
                 onRemove={handleOnchangeBusiSubType} // Function will trigger on remove event
                 displayValue="Sub Type" // Property name to display in the dropdown options
-              />
+              /> */}
 
               <Form.Label
                 htmlFor="filterValueChain"
@@ -359,7 +365,7 @@ const Filter = ({
                 onRemove={handleOnchangeValueChainType} // Function will trigger on remove event
                 displayValue="value chain" // Property name to display in the dropdown options
               />
-              <Form.Label
+              {/* <Form.Label
                 htmlFor="filterValueSubType"
                 className="multiselect-form-label"
               >
@@ -373,7 +379,7 @@ const Filter = ({
                 onSelect={handleOnchangeValueChainSubType} // Function will trigger on select event
                 onRemove={handleOnchangeValueChainSubType} // Function will trigger on remove event
                 displayValue="value chain sub" // Property name to display in the dropdown options
-              />
+              /> */}
               <Form.Label
                 htmlFor="filterCompanyType"
                 className="multiselect-form-label"
@@ -389,7 +395,7 @@ const Filter = ({
                 onRemove={handleOnchangeCompanySubType} // Function will trigger on remove event
                 displayValue="company type" // Property name to display in the dropdown options
               />
-              <Form.Label
+              {/* <Form.Label
                 htmlFor="filterCompanySubType"
                 className="multiselect-form-label"
               >
@@ -403,7 +409,7 @@ const Filter = ({
                 onSelect={handleOnchangeCompanySubType} // Function will trigger on select event
                 onRemove={handleOnchangeCompanySubType} // Function will trigger on remove event
                 displayValue="company sub type" // Property name to display in the dropdown options
-              />
+              /> */}
             </div>
 
             <br />

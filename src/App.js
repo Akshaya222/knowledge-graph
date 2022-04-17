@@ -24,22 +24,22 @@ function App() {
   const fetchData = async () => {
     let workflowlist, workflowimpl, sellers, buyers;
     workflowlist = await axios.post(
-      "https://testapi.insurancegig.com/workflowapidev/api/workflow/list",
+      "https://api.insurancegig.com/workflowapi/api/workflow/list",
       {}
     );
     workflowlist = workflowlist.data;
     workflowimpl = await axios.post(
-      "https://testapi.insurancegig.com/workflowapidev/api/workflow/implementation",
+      "https://api.insurancegig.com/workflowapi/api/workflow/implementation",
       {}
     );
     workflowimpl = workflowimpl.data;
     sellers = await axios.post(
-      "https://testapi.insurancegig.com/workflowapidev/api/workflow/seller",
+      "https://api.insurancegig.com/workflowapi/api/workflow/seller",
       {}
     );
     sellers = sellers.data;
     buyers = await axios.post(
-      "https://testapi.insurancegig.com/workflowapidev/api/workflow/buyer",
+      "https://api.insurancegig.com/workflowapi/api/workflow/buyer",
       {}
     );
     buyers = buyers.data;

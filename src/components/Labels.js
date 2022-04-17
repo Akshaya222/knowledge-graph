@@ -26,14 +26,20 @@ const Labels = () => {
         >
           <div className="label-container">
             <div className="flex-row-align-center">
-              <img src="imgs/white-box.png" height="25px" />
+            <div
+                className="label-circle"
+                style={{
+                  background: "rgba(119, 1, 216,1.0)",
+                }}
+              ></div>
+              {/* <img src="imgs/white-box.png" height="25px" /> */}
               <span className="label-text">Workflow</span>
             </div>
             <div className="flex-row-align-center">
               <div
                 className="label-circle"
                 style={{
-                  background: "#fa6bf5",
+                  background: "rgb(255, 179, 215)",
                 }}
               ></div>
               <span className="label-text">Implementation</span>
