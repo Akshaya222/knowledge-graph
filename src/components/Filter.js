@@ -229,6 +229,7 @@ const Filter = ({
   const handleOnchangeCompanySubType = (selectedList, selectedItem) => {
     setFilteredObj({ ...filteredObj, companySubType: selectedList });
   };
+
   return (
     <Draggable
       position={filterPosition}
@@ -328,7 +329,7 @@ const Filter = ({
                 displayValue="Business Type" // Property name to display in the dropdown options
               />
               <br />
-              <Form.Label
+              {/* <Form.Label
                 htmlFor="filterBusinessSubType"
                 className="multiselect-form-label"
               >
@@ -342,7 +343,7 @@ const Filter = ({
                 onSelect={handleOnchangeBusiSubType} // Function will trigger on select event
                 onRemove={handleOnchangeBusiSubType} // Function will trigger on remove event
                 displayValue="Sub Type" // Property name to display in the dropdown options
-              />
+              /> */}
 
               <Form.Label
                 htmlFor="filterValueChain"
@@ -359,7 +360,7 @@ const Filter = ({
                 onRemove={handleOnchangeValueChainType} // Function will trigger on remove event
                 displayValue="value chain" // Property name to display in the dropdown options
               />
-              <Form.Label
+              {/* <Form.Label
                 htmlFor="filterValueSubType"
                 className="multiselect-form-label"
               >
@@ -373,7 +374,7 @@ const Filter = ({
                 onSelect={handleOnchangeValueChainSubType} // Function will trigger on select event
                 onRemove={handleOnchangeValueChainSubType} // Function will trigger on remove event
                 displayValue="value chain sub" // Property name to display in the dropdown options
-              />
+              /> */}
               <Form.Label
                 htmlFor="filterCompanyType"
                 className="multiselect-form-label"
@@ -389,7 +390,7 @@ const Filter = ({
                 onRemove={handleOnchangeCompanySubType} // Function will trigger on remove event
                 displayValue="company type" // Property name to display in the dropdown options
               />
-              <Form.Label
+              {/* <Form.Label
                 htmlFor="filterCompanySubType"
                 className="multiselect-form-label"
               >
@@ -403,7 +404,7 @@ const Filter = ({
                 onSelect={handleOnchangeCompanySubType} // Function will trigger on select event
                 onRemove={handleOnchangeCompanySubType} // Function will trigger on remove event
                 displayValue="company sub type" // Property name to display in the dropdown options
-              />
+              /> */}
             </div>
 
             <br />

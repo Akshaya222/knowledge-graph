@@ -18,9 +18,9 @@ import {
   PlusCircleFill,
   XOctagon,
 } from "react-bootstrap-icons";
-const NodeDetail = ({ item }) => {
+const NodeDetail = ({ item, show, setShow }) => {
+  console.log("item is....**************8", item);
   const { height, width } = useWindowDimensions();
-  const [show, setShow] = useState(false);
   var [detailPosition, setDetailPosition] = useState({
     x: width - width * 0.25,
     y: 10,

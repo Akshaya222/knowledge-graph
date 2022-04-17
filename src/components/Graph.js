@@ -19,6 +19,8 @@ const ExpandableGraph = ({
   setPrunedTree,
   prunedTree,
   containerRef,
+  show,
+  setShow,
 }) => {
   const NODE_R = 3;
   const rootId = "m-1";
@@ -172,6 +174,7 @@ const ExpandableGraph = ({
       onNodeHover={(node) => {
         if (node != null) {
           setItem(node);
+          setShow(true);
         }
       }}
       onNodeClick={handleNodeClick}

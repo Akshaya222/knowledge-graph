@@ -19,6 +19,7 @@ function App() {
   const [item, setItem] = useState({});
   const [prunedTree, setPrunedTree] = useState({});
   const [unchangedData, setUnchangedData] = useState({});
+  const [show, setShow] = useState(false);
   const containerRef = useRef({});
 
   const fetchData = async () => {
@@ -81,7 +82,7 @@ function App() {
             />
           </Container>
           <Container className="position-absolute">
-            <NodeDetail item={item} />
+            <NodeDetail item={item} show={show} setShow={setShow} />
           </Container>
           <Container className="position-absolute curser-move ">
             <Labels />
@@ -93,6 +94,8 @@ function App() {
               prunedTree={prunedTree}
               setPrunedTree={setPrunedTree}
               containerRef={containerRef}
+              setShow={setShow}
+              show={show}
             />
           </Container>
         </div>
