@@ -2,10 +2,10 @@ import axios from "axios";
 import React, { useEffect, useState, useRef } from "react";
 import { getAllData } from "./data";
 import { Container } from "react-bootstrap";
-import Header from "./components/Header";
-import WorkFlow from "./components/Workflow";
-import Partner from "./components/Partner";
-import LineOfBusiness from "./components/LineOfBusiness";
+import Header from "./components/Header/Header";
+import WorkFlow from "./pages/Workflow";
+import Partner from "./pages/Partner";
+import LineOfBusiness from "./pages/LineOfBusiness";
 var _ = require("lodash");
 
 function App() {

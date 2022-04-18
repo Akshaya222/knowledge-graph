@@ -9,9 +9,9 @@ import {
   Button,
 } from "react-bootstrap";
 import SelectSearch from "react-select-search";
-import useWindowDimensions from "../hooks/useWindowDimensions";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 import Draggable, { DraggableCore } from "react-draggable"; // Both at the same time
-import { filterData, getAllData } from "../data";
+import { filterData, getAllData } from "../../data";
 import s from "react-multiple-select-dropdown-lite";
 import {
   PatchPlusFill,

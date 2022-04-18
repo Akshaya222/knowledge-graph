@@ -2,11 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState, useRef } from "react";
 import { getAllData } from "../data";
 import { Container } from "react-bootstrap";
-import ExpandableGraph from "./Graph";
-import Filter from "./Filter";
-import NodeDetail from "./NodeDetail";
-import Labels from "./Labels";
-import Zoom from "./Zoom";
+import ExpandableGraph from "../components/Workflow/Graph";
+import Filter from "../components/Workflow/Filter";
+import NodeDetail from "../components/Workflow/NodeDetail";
+import Labels from "../components/Workflow/Labels";
+import Zoom from "../components/Workflow/Zoom";
 var _ = require("lodash");
 
 function WorkFlow() {

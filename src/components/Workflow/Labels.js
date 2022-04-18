@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useWindowDimensions from "../hooks/useWindowDimensions";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 import { Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Draggable from "react-draggable"; // Both at the same time
 var _ = require("lodash");
@@ -26,7 +26,7 @@ const Labels = () => {
         >
           <div className="label-container">
             <div className="flex-row-align-center">
-            <div
+              <div
                 className="label-circle"
                 style={{
                   background: "rgba(119, 1, 216,1.0)",

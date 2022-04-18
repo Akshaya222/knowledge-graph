@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ArrowClockwise, ZoomIn, ZoomOut } from "react-bootstrap-icons";
 import { Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Draggable, { DraggableCore } from "react-draggable"; // Both at the same time
-import useWindowDimensions from "../hooks/useWindowDimensions";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 var _ = require("lodash");
 
 const Zoom = ({ prunedTree, containerRef }) => {
