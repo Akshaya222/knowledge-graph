@@ -33,9 +33,9 @@ const ExpandableGraph = ({
         .distance((link) => {
           if (link.target.id.includes("workflowId")) {
             // return 80;
-            return 100;
+            return 80;
           } else {
-            return 60;
+            return 35;
           }
         })
         .strength((link) => 1);
@@ -83,14 +83,18 @@ const ExpandableGraph = ({
         prunedTree = prunedTree.nodes.map((n) => {
           if (n.id.includes("workflowId")) {
             if (!n.collapsed) {
-              return (n.renderImg = n.img);
+              n.height=40;
+              n.width=25;
+              return (n.renderColor = n.color
+                );
             } else {
-              return (n.renderImg = n.alternativeImg);
+              return (n.renderColor = n.alternativeColor);
             }
           }
         });
       }
     }
+    
     if (node.id.includes("workflowImplementation")) {
       if (!node.collapsed) {
         prunedTree.nodes.map((n) => {
@@ -128,11 +132,14 @@ const ExpandableGraph = ({
       const nodeEle = document.createElement("div");
       const imgEle = document.createElement("img");
       const p = document.createElement("span");
+      nodeEle.style.padding="20px";
       imgEle.src = node.imgUrl;
-      imgEle.style.height = "13px";
+      imgEle.style.height = "20px";
+      imgEle.style.width = "20px";
+      imgEle.style.borderRadius = "5px";
       p.innerText = node.name;
-      p.style.fontSize = "12px";
-      p.style.marginLeft = "3px";
+      p.style.fontSize = "18px";
+      p.style.marginLeft = "10px";
       nodeEle.appendChild(imgEle);
       nodeEle.appendChild(p);
       nodeEle.className = "child-nodes-div";
@@ -147,6 +154,7 @@ const ExpandableGraph = ({
       ref={containerRef}
       extraRenderers={extraRenderers}
       dagMode="zin"
+      backgroundColor="rgba(211, 158, 255,0)"
       graphData={getPrunedTree()}
       linkDirectionalParticles={2}
       nodeLabel={(node) =>
@@ -182,7 +190,13 @@ const ExpandableGraph = ({
       linkThreeObject={(link) => {
         // extend link with text sprite
         const sprite = new SpriteText(``);
+
         sprite.color = "lightgrey";
+        console.log(link.source);
+        if(!link.source.collapsed && link.source.id!=="m-1"){
+          sprite.color = "white";
+
+        };
         sprite.textHeight = 1.5;
         return sprite;
       }}

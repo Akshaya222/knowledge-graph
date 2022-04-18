@@ -27,7 +27,7 @@ body {
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
-  padding-left: 1%;
+  /* padding-left: 1%; */
   padding-right: 1%;
 }
 .dot {
@@ -40,7 +40,9 @@ body {
   margin-right: 10px;
 }
 .layoutOption {
-  background: #101010 0% 0% no-repeat padding-box;
+  /* background: transparent url("../public/imgs/bg-main.jpg"); */
+  background: transparent url("../public/imgs/bg-main.jpg") 0% 0% no-repeat
+    padding-box;
   border: 0.5px solid #8d8d8d;
   border-radius: 5px;
   opacity: 1;
@@ -72,6 +74,7 @@ body {
   background-color: None;
 }
 .infoCard {
+  width: 40%;
   background-color: #171717;
   color: white;
   border: 0.5px solid #b9b9b9;
@@ -80,7 +83,7 @@ body {
 }
 .infoCardFilter {
   width: 25%;
-  background-color: rgba(229, 229, 229, 0.4);
+  background-color: rgba(255, 255, 255, 0.25);
   color: white;
   position: absolute;
   z-index: 9;
@@ -97,7 +100,8 @@ body {
   cursor: move;
   z-index: 10;
   color: #fff;
-
+  /* font-size: 22px; */
+  font-weight: bold;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -116,7 +120,7 @@ body {
   margin-top: 10px;
 
   text-align: left;
-  font: normal normal normal 18px/29px Poppins;
+  /* font: normal normal normal 18px/29px Poppins; */
   letter-spacing: 0px;
   color: #fff;
   opacity: 1;
@@ -156,6 +160,19 @@ body {
 .header-button-active {
   background: #6605f7 !important;
   color: white !important;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  color: black;
+  background-color: white;
+  width: 130px;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 3px;
+}
+.special-text {
+  text-decoration: underline;
 }
 .company-name {
   color: #000;
@@ -246,7 +263,7 @@ body {
   margin-top: 1px;
 }
 .infoCardDetails {
-  background-color: rgba(229, 229, 229, 0.4);
+  background-color: rgba(255, 255, 255, 0.25);
   color: white;
   position: absolute;
   z-index: 8;
@@ -265,6 +282,7 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  font-weight: bold;
   /* background-color: #2196F3;
     color: #fff; */
 }
@@ -285,10 +303,11 @@ body {
   border: 1px solid white;
   padding: 0px 14px 10px 14px;
   border-radius: 5px;
+  margin-left: 10px;
   margin-right: "6px";
 }
 .zoomCardDetails {
-  background-color: #171717;
+  background-color: #17171700;
   color: white;
   position: absolute;
   z-index: 8;
@@ -313,6 +332,7 @@ body {
   padding: 0px;
 }
 .kg {
+  background: transparent url("../public/imgs/bg-main.jpg");
   width: 100vw;
   height: 100vh;
   /* overflow: hidden; */

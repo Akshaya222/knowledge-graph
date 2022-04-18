@@ -18,6 +18,8 @@ import {
   PlusCircleDotted,
   PlusCircleFill,
   XOctagon,
+  FullscreenExit,
+  Fullscreen,
 } from "react-bootstrap-icons";
 
 const Filter = ({
@@ -43,24 +45,47 @@ const Filter = ({
   });
   const [show, setShow] = useState(false);
   var [filterPosition, setFilterPosition] = useState({
-    x: 0 + width * 0.03,
+    x: -20,
     y: 10,
   });
 
   const allNodes = { wfdata, wfdataImp, sellers, buyers };
 
-  let CNameoptions = wfdata.map((i) => i.title);
+  let CNameoptions = wfdata
+    .map((i) => i.title)
+    .filter(function (element) {
+      return element != null;
+    });
   CNameoptions = ["All"].concat(CNameoptions);
 
   var set;
-  set = new Set(["All", ...wfdata.map((w) => w.workflowType)]);
+  set = new Set([
+    "All",
+    ...wfdata
+      .map((w) => w.workflowType)
+      .filter(function (element) {
+        return element != null;
+      }),
+  ]);
   let wfTypeOptions = [...set];
 
-  set = new Set(["All", ...wfdataImp.map((w) => w.status)]);
+  set = new Set(
+    ["All", ...wfdataImp.map((w) => w.status)].filter(function (element) {
+      return element != null;
+    })
+  );
   let wfStatusOptions = [...set];
 
-  let sellerNames = sellers.map((s) => s.seller);
-  let buyerNames = buyers.map((b) => b.buyer);
+  let sellerNames = sellers
+    .map((s) => s.seller)
+    .filter(function (element) {
+      return element != null || element != undefined;
+    });
+  let buyerNames = buyers
+    .map((b) => b.buyer)
+    .filter(function (element) {
+      return element != null || element != undefined;
+    });
   set = new Set(["All", ...sellerNames, ...buyerNames]);
   let partnerNamesOptions = [...set];
 
@@ -71,7 +96,7 @@ const Filter = ({
       }
     })
     .filter(function (element) {
-      return element !== undefined;
+      return element != null || element != undefined;
     });
 
   let lineofBusBuyers = buyers
@@ -81,7 +106,7 @@ const Filter = ({
       }
     })
     .filter(function (element) {
-      return element !== undefined;
+      return element != null || element != undefined;
     });
   set = new Set(["All", ...lineOfBusSellers, ...lineofBusBuyers]);
   let lineOfBusinessOptions = [...set];
@@ -93,7 +118,7 @@ const Filter = ({
       }
     })
     .filter(function (element) {
-      return element !== undefined;
+      return element != null || element != undefined;
     });
 
   let lineofBusSubTyBuyers = buyers
@@ -103,7 +128,7 @@ const Filter = ({
       }
     })
     .filter(function (element) {
-      return element !== undefined;
+      return element != null || element != undefined;
     });
   set = new Set(["All", ...lineOfBusSubTySellers, ...lineofBusSubTyBuyers]);
   let lineOfBusSubTyOptions = [...set];
@@ -115,7 +140,7 @@ const Filter = ({
       }
     })
     .filter(function (element) {
-      return element !== undefined;
+      return element != null || element != undefined;
     });
 
   let valueChainBuy = buyers
@@ -125,7 +150,7 @@ const Filter = ({
       }
     })
     .filter(function (element) {
-      return element !== undefined;
+      return element != null || element != undefined;
     });
   set = new Set(["All", ...valueChainBuy, ...valueChainSell]);
   let valueChainOptions = [...set];
@@ -137,7 +162,7 @@ const Filter = ({
       }
     })
     .filter(function (element) {
-      return element !== undefined;
+      return element != null || element != undefined;
     });
 
   let valueChainSubBuy = buyers
@@ -147,7 +172,7 @@ const Filter = ({
       }
     })
     .filter(function (element) {
-      return element !== undefined;
+      return element != null || element != undefined;
     });
   set = new Set(["All", ...valueChainSubBuy, ...valueChainSubSell]);
   let valueChainSubOptions = [...set];
@@ -160,7 +185,7 @@ const Filter = ({
       }
     })
     .filter(function (element) {
-      return element !== undefined;
+      return element != null || element != undefined;
     });
 
   let companyTypeBuy = buyers
@@ -170,7 +195,7 @@ const Filter = ({
       }
     })
     .filter(function (element) {
-      return element !== undefined;
+      return element != null || element != undefined;
     });
   set = new Set(["All", ...companyTypeBuy, ...companyTypeSell]);
   let companyTypeOptions = [...set];
@@ -183,7 +208,7 @@ const Filter = ({
       }
     })
     .filter(function (element) {
-      return element !== undefined;
+      return element != null || element != undefined;
     });
 
   let companySubTypeBuy = buyers
@@ -193,10 +218,20 @@ const Filter = ({
       }
     })
     .filter(function (element) {
-      return element !== undefined;
+      return element != null || element != undefined;
     });
   set = new Set(["All", ...companySubTypeBuy, ...companySubTypeSell]);
   let companySubTypeOptions = [...set];
+
+  console.log(
+    "alloptions are.........+++++++++++++++=",
+    CNameoptions,
+    wfStatusOptions,
+    wfTypeOptions,
+    lineOfBusinessOptions,
+    lineOfBusSubTyOptions,
+    valueChainOptions
+  );
 
   const handleOnchangeWfName = (selectedList, selectedItem) => {
     setFilteredObj({ ...filteredObj, names: selectedList });
@@ -238,11 +273,31 @@ const Filter = ({
       <Card className="infoCardFilter">
         <Card.Header className="infoCardFilterHeader">
           <p> Select Filters</p>
-          <p onClick={() => setShow(!show)}>
+          <p onClick={() => setShow(!show)} style={{ marginLeft: "60px" }}>
             {show ? (
-              <XOctagon color="#f72a51" />
+              <Container
+                style={{
+                  background: "red",
+                  paddingTop: "1px",
+                  paddingBottom: "3px",
+                  paddingLeft: "6px",
+                  paddingRight: "6px",
+                }}
+              >
+                <FullscreenExit color="#fff" />
+              </Container>
             ) : (
-              <PatchPlusFill color="#f72a51" size={20} />
+              <Container
+                style={{
+                  background: "#6c4197",
+                  paddingTop: "1px",
+                  paddingBottom: "3px",
+                  paddingLeft: "6px",
+                  paddingRight: "6px",
+                }}
+              >
+                <Fullscreen color="#fff" />
+              </Container>
             )}
           </p>
         </Card.Header>
