@@ -77,28 +77,36 @@ const ExpandableGraph = ({
 
   const handleNodeClick = useCallback((node) => {
     let prunedTree = getPrunedTree();
+    console.log("prined treee isssssssssssss", prunedTree);
     node.collapsed = !node.collapsed;
     let ans = prunedTree.nodes.filter(
       (n) => n.id.includes("workflowId") && n.collapsed != true
     );
     if (ans.length == 0) {
-      prunedTree = prunedTree.nodes.map((n) => {
+      prunedTree.nodes = prunedTree.nodes.map((n) => {
         if (n.id.includes("workflowId")) {
-          return (n.renderColor = n.color);
+          n.renderColor = n.color;
+          return n;
+        } else {
+          return n;
         }
       });
     }
     if (node.id.includes("workflowId")) {
       if (!node.collapsed) {
-        prunedTree = prunedTree.nodes.map((n) => {
+        prunedTree.nodes = prunedTree.nodes.map((n) => {
           if (n.id.includes("workflowId")) {
             if (!n.collapsed) {
               n.height = 40;
               n.width = 25;
-              return (n.renderColor = n.color); //
+              n.renderColor = n.color;
+              return n;
             } else {
-              return (n.renderColor = n.alternativeColor);
+              n.renderColor = n.alternativeColor;
+              return n;
             }
+          } else {
+            return n;
           }
         });
       }
@@ -108,17 +116,23 @@ const ExpandableGraph = ({
       (n) => n.id.includes("workflowImplementation") && n.collapsed != true
     );
     if (ansImp.length == 0) {
-      prunedTree = prunedTree.nodes.map((n) => {
+      prunedTree.nodes = prunedTree.nodes.map((n) => {
         if (n.id.includes("workflowImplementation")) {
-          return (n.renderColor = n.color);
+          n.renderColor = n.color;
+          return n;
+        } else {
+          return n;
         }
       });
     }
     if (node.id.includes("workflowImplementation")) {
       if (!node.collapsed) {
-        prunedTree.nodes.map((n) => {
+        prunedTree.nodes = prunedTree.nodes.map((n) => {
           if (n.id.includes("workflowImplementation") && n.id !== node.id) {
             n.renderColor = n.alternativeColor;
+            return n;
+          } else {
+            return n;
           }
         });
       } else {

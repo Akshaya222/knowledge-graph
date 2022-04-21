@@ -40,7 +40,7 @@ const getAllData = (workflowdata, workflowimpdata, sellerdata, buyerdata) => {
   });
 
   workflowdata = workflowdata.map(function (x) {
-    var xcolor = "rgba(139, 23, 231,1)";
+    var xcolor = "rgb(139, 23, 231)";
     console.log(x["workflowId"]);
     console.log(wfids);
     if (wfids.includes(x["workflowId"].toString())) {
@@ -53,8 +53,9 @@ const getAllData = (workflowdata, workflowimpdata, sellerdata, buyerdata) => {
     altC = altC.slice(0, -1);
     if (wfids.includes(x["workflowId"].toString())) {
       altC = `rgba(${altC},0.7)`;
+    } else {
+      altC = `rgba(${altC},0.3)`;
     }
-    altC = `rgba(${altC},0.3)`;
 
     return {
       ...{
