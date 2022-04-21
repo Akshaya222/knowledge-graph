@@ -78,15 +78,24 @@ const ExpandableGraph = ({
   const handleNodeClick = useCallback((node) => {
     let prunedTree = getPrunedTree();
     node.collapsed = !node.collapsed;
+    let ans = prunedTree.nodes.filter(
+      (n) => n.id.includes("workflowId") && n.collapsed != true
+    );
+    if (ans.length == 0) {
+      prunedTree = prunedTree.nodes.map((n) => {
+        if (n.id.includes("workflowId")) {
+          return (n.renderColor = n.color);
+        }
+      });
+    }
     if (node.id.includes("workflowId")) {
       if (!node.collapsed) {
         prunedTree = prunedTree.nodes.map((n) => {
           if (n.id.includes("workflowId")) {
             if (!n.collapsed) {
-              n.height=40;
-              n.width=25;
-              return (n.renderColor = n.color
-                );
+              n.height = 40;
+              n.width = 25;
+              return (n.renderColor = n.color); //
             } else {
               return (n.renderColor = n.alternativeColor);
             }
@@ -94,7 +103,17 @@ const ExpandableGraph = ({
         });
       }
     }
-    
+
+    let ansImp = prunedTree.nodes.filter(
+      (n) => n.id.includes("workflowImplementation") && n.collapsed != true
+    );
+    if (ansImp.length == 0) {
+      prunedTree = prunedTree.nodes.map((n) => {
+        if (n.id.includes("workflowImplementation")) {
+          return (n.renderColor = n.color);
+        }
+      });
+    }
     if (node.id.includes("workflowImplementation")) {
       if (!node.collapsed) {
         prunedTree.nodes.map((n) => {
@@ -132,7 +151,7 @@ const ExpandableGraph = ({
       const nodeEle = document.createElement("div");
       const imgEle = document.createElement("img");
       const p = document.createElement("span");
-      nodeEle.style.padding="20px";
+      nodeEle.style.padding = "20px";
       imgEle.src = node.imgUrl;
       imgEle.style.height = "20px";
       imgEle.style.width = "20px";
@@ -193,10 +212,9 @@ const ExpandableGraph = ({
 
         sprite.color = "lightgrey";
         console.log(link.source);
-        if(!link.source.collapsed && link.source.id!=="m-1"){
+        if (!link.source.collapsed && link.source.id !== "m-1") {
           sprite.color = "white";
-
-        };
+        }
         sprite.textHeight = 1.5;
         return sprite;
       }}

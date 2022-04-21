@@ -44,10 +44,18 @@ const getAllData = (workflowdata, workflowimpdata, sellerdata, buyerdata) => {
     console.log(x["workflowId"]);
     console.log(wfids);
     if (wfids.includes(x["workflowId"].toString())) {
-      xcolor = "rgba(139, 23, 231,1)";
+      xcolor = "rgb(139, 23, 231)";
     } else {
-      xcolor = "#785196";
+      xcolor = "rgb(120, 81, 150)";
     }
+    let altC = xcolor;
+    altC = altC.substring(4);
+    altC = altC.slice(0, -1);
+    if (wfids.includes(x["workflowId"].toString())) {
+      altC = `rgba(${altC},0.7)`;
+    }
+    altC = `rgba(${altC},0.3)`;
+
     return {
       ...{
         id: "workflowId" + x["workflowId"],
@@ -58,7 +66,7 @@ const getAllData = (workflowdata, workflowimpdata, sellerdata, buyerdata) => {
         height: 17,
         visible: false,
         color: xcolor,
-        alternativeColor: "rgba(139, 23, 231,0.3)",
+        alternativeColor: altC,
         renderColor: xcolor,
       },
       ...x,
