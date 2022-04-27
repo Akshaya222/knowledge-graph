@@ -41,8 +41,6 @@ const getAllData = (workflowdata, workflowimpdata, sellerdata, buyerdata) => {
 
   workflowdata = workflowdata.map(function (x) {
     var xcolor = "rgb(139, 23, 231)";
-    console.log(x["workflowId"]);
-    console.log(wfids);
     if (wfids.includes(x["workflowId"].toString())) {
       xcolor = "rgb(139, 23, 231)";
     } else {
@@ -79,7 +77,7 @@ const getAllData = (workflowdata, workflowimpdata, sellerdata, buyerdata) => {
     let wfimp = workflowimpdata.find((y) => x.workflowImplementation == y.name);
     return {
       ...{
-        id: "sellerId" + x["sellerId"],
+        id: "sellerId" + x["sellerId"] + x["workflowImplementation"],
         visible: false,
         color: "rgba(119, 1, 216,0.0)",
         renderColor: "rgba(119, 1, 216,0.0)",
@@ -97,7 +95,7 @@ const getAllData = (workflowdata, workflowimpdata, sellerdata, buyerdata) => {
     let wfimp = workflowimpdata.find((y) => x.workflowImplementation == y.name);
     return {
       ...{
-        id: "buyerId" + x["buyerId"],
+        id: "buyerId" + x["buyerId"] + x["workflowImplementation"],
         visible: false,
         color: "rgba(119, 1, 216,0.0)",
         alternativeColor: "rgba(119, 1, 216,0.0)",

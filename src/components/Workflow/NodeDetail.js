@@ -63,8 +63,6 @@ const NodeDetail = ({
       });
   }
 
-  console.log(selPartners, buyPartners);
-
   const handleOnClickPartner = () => {
     if (allData.nodes.length < 30) {
       return;

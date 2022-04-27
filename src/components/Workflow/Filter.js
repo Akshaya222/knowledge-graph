@@ -223,16 +223,6 @@ const Filter = ({
   set = new Set(["All", ...companySubTypeBuy, ...companySubTypeSell]);
   let companySubTypeOptions = [...set];
 
-  console.log(
-    "alloptions are.........+++++++++++++++=",
-    CNameoptions,
-    wfStatusOptions,
-    wfTypeOptions,
-    lineOfBusinessOptions,
-    lineOfBusSubTyOptions,
-    valueChainOptions
-  );
-
   const handleOnchangeWfName = (selectedList, selectedItem) => {
     setFilteredObj({ ...filteredObj, names: selectedList });
   };

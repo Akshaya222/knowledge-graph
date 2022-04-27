@@ -77,7 +77,6 @@ const ExpandableGraph = ({
 
   const handleNodeClick = useCallback((node) => {
     let prunedTree = getPrunedTree();
-    console.log("prined treee isssssssssssss", prunedTree);
     node.collapsed = !node.collapsed;
     let ans = prunedTree.nodes.filter(
       (n) => n.id.includes("workflowId") && n.collapsed != true
@@ -112,32 +111,47 @@ const ExpandableGraph = ({
       }
     }
 
-    let ansImp = prunedTree.nodes.filter(
-      (n) => n.id.includes("workflowImplementation") && n.collapsed != true
-    );
-    if (ansImp.length == 0) {
-      prunedTree.nodes = prunedTree.nodes.map((n) => {
-        if (n.id.includes("workflowImplementation")) {
-          n.renderColor = n.color;
-          return n;
-        } else {
-          return n;
-        }
-      });
-    }
     if (node.id.includes("workflowImplementation")) {
-      if (!node.collapsed) {
+      let ansImp = prunedTree.nodes.filter(
+        (n) =>
+          n.id.includes("workflowImplementation") &&
+          n.id.workflowId == node.workflowId &&
+          n.collapsed != true
+      );
+      if (ansImp.length == 0) {
         prunedTree.nodes = prunedTree.nodes.map((n) => {
-          if (n.id.includes("workflowImplementation") && n.id !== node.id) {
-            n.renderColor = n.alternativeColor;
+          if (n.id.includes("workflowImplementation")) {
+            n.renderColor = n.color;
             return n;
           } else {
             return n;
           }
         });
-      } else {
       }
     }
+
+    if (node.id.includes("workflowImplementation")) {
+      if (!node.collapsed) {
+        prunedTree.nodes = prunedTree.nodes.map((n) => {
+          if (n.id.includes("workflowImplementation")) {
+            if (!n.collapsed) {
+              n.renderColor = n.color;
+              return n;
+            } else {
+              if (n.workflowId == node.workflowId) {
+                n.renderColor = n.alternativeColor;
+              } else {
+                n.renderColor = n.color;
+              }
+              return n;
+            }
+          } else {
+            return n;
+          }
+        });
+      }
+    }
+
     setPrunedTree(getPrunedTree());
   }, []);
 
@@ -225,7 +239,6 @@ const ExpandableGraph = ({
         const sprite = new SpriteText(``);
 
         sprite.color = "lightgrey";
-        console.log(link.source);
         if (!link.source.collapsed && link.source.id !== "m-1") {
           sprite.color = "white";
         }
